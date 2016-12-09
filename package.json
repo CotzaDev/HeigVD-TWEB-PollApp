@@ -7,6 +7,10 @@
     "webpack",
     "typescript"
   ],
+  "engines": {
+   "node": "7.1.x",
+   "npm": "3.10.x"
+ },
   "author": {
     "name": "Andrea Cotza & Sakam Michelle",
     "email": "andrea@cotza.me"
