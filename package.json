@@ -86,9 +86,7 @@
     "http-server": "^0.9.0",
     "ie-shim": "^0.1.0",
     "rxjs": "5.0.0-beta.12",
-    "zone.js": "~0.6.26"
-  },
-  "devDependencies": {
+    "zone.js": "~0.6.26",
     "@ngtools/webpack": "^1.1.7",
     "@types/hammerjs": "^2.0.33",
     "@types/jasmine": "^2.5.38",
@@ -142,6 +140,8 @@
     "webpack-dev-server": "^2.1.0-beta.11",
     "webpack-md5-hash": "^0.0.5",
     "webpack-merge": "^0.17.0"
+  },
+  "devDependencies": {
   },
   "repository": {
     "type": "git",
