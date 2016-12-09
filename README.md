@@ -1,9 +1,13 @@
 		              PROJET TWEB(Technologies WEB)
 Titre: Poll App
 Autors : COTZA Andrea & MEGUEP Michelle
+
 Purpose: Create dynamic polls to share with an audience.
 
 For more informations you can visit our [landing page](https://cotzadev.github.io/HeigVD-TWEB-PollApp/)
+
+You can find our mockups in this repository [here](https://github.com/CotzaDev/HeigVD-TWEB-PollApp/tree/master/mockup-images)
+
 
 # Technology
 - NodeJS
