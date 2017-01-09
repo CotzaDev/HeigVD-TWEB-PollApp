@@ -14,6 +14,7 @@ import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppComponent } from './app.component';
 import { AppState } from './app.service';
 import { HomeComponent } from './home';
+import { QuestionComponent} from './question';
 import { NoContentComponent } from './no-content';
 import { ROUTES } from './app.routes';
 import { XLargeDirective } from './home/x-large';
@@ -34,6 +35,7 @@ const APP_PROVIDERS = [
     AppComponent,
     AboutComponent,
     HomeComponent,
+    QuestionComponent,
     NoContentComponent,
     XLargeDirective,
   ],
@@ -49,6 +51,7 @@ const APP_PROVIDERS = [
   ],
   entryComponents: [
     HomeComponent,
+    QuestionComponent,
     AboutComponent,
   ],
 })
