@@ -1,0 +1,57 @@
+
+#top{
+    position: fixed;
+	top: 50px;
+	width: 100%;
+	heigth: 50px;	
+	text-align: center
+}
+
+#global
+{
+    float:left;
+    width: 100%;
+	margin-top: 150px;
+	margin-rigth: auto;
+	margin-left: auto;
+      
+}
+ 
+#left
+{
+    height: 500px;
+    float: left;
+	width: 40%;
+    text-align: center;
+}
+ #separate_ligne
+{
+    width:20px;
+    border-left:5px solid gray;
+	margin-left: 10%;
+	margin-right: 10%;
+    height:400px;
+	float: left;
+}
+#rigth
+{
+    height: 500px;
+    width: 40%;
+	float: left;
+    
+}
+ input{
+ text-align:center;
+ }
+input[type=username]{
+ background: white url('img/user-logo.png') no-repeat left;
+ background-size:contain;
+}
+input[type=password]{
+ background: white url('img/password-logo.png') no-repeat left;
+ background-size:contain;
+}
+input[type=email]{
+ background: white url('img/email-logo.png') no-repeat left;
+ background-size:contain;
+}
