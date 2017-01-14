@@ -2,6 +2,7 @@ import { AboutComponent } from './about';
 import { HomeComponent } from './home';
 import { QuestionComponent } from './question';
 import { LoginComponent } from './login';
+import { UResultComponent } from './uResult';
 import { NoContentComponent } from './no-content';
 import { Routes } from '@angular/router';
 
@@ -10,6 +11,7 @@ const ROUTES: Routes = [
   { path: 'home',  component: HomeComponent },
   { path: 'question', component: QuestionComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'uResult', component: UResultComponent },
   { path: 'about', component: AboutComponent },
   { path: 'detail', loadChildren: './+detail#DetailModule' },
   { path: '**',    component: NoContentComponent },

@@ -16,6 +16,7 @@ import { AppState } from './app.service';
 import { HomeComponent } from './home';
 import { QuestionComponent } from './question';
 import { LoginComponent } from './login';
+import { UResultComponent } from './uResult';
 import { NoContentComponent } from './no-content';
 import { ROUTES } from './app.routes';
 import { XLargeDirective } from './home/x-large';
@@ -38,6 +39,7 @@ const APP_PROVIDERS = [
     HomeComponent,
     QuestionComponent,
     LoginComponent,
+	UResultComponent,
     NoContentComponent,
     XLargeDirective,
   ],
@@ -55,6 +57,7 @@ const APP_PROVIDERS = [
     HomeComponent,
     QuestionComponent,
     LoginComponent,
+	UResultComponent,
     AboutComponent,
   ],
 })
