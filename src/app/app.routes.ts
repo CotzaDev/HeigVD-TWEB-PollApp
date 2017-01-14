@@ -1,6 +1,7 @@
 import { AboutComponent } from './about';
 import { HomeComponent } from './home';
 import { QuestionComponent } from './question';
+import { QuestionsComponent } from './questions';
 import { LoginComponent } from './login';
 import { UResultComponent } from './uResult';
 import { NoContentComponent } from './no-content';
@@ -10,6 +11,7 @@ const ROUTES: Routes = [
   { path: '',      component: HomeComponent },
   { path: 'home',  component: HomeComponent },
   { path: 'question', component: QuestionComponent },
+  { path: 'questions', component: QuestionsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'uResult', component: UResultComponent },
   { path: 'about', component: AboutComponent },

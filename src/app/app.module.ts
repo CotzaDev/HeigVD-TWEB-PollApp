@@ -15,6 +15,7 @@ import { AppComponent } from './app.component';
 import { AppState, IO } from './app.service';
 import { HomeComponent } from './home';
 import { QuestionComponent } from './question';
+import { QuestionsComponent } from './questions';
 import { LoginComponent } from './login';
 import { UResultComponent } from './uResult';
 import { NoContentComponent } from './no-content';
@@ -39,6 +40,7 @@ const APP_PROVIDERS = [
     AboutComponent,
     HomeComponent,
     QuestionComponent,
+	QuestionsComponent,
     LoginComponent,
 	  UResultComponent,
     NoContentComponent,
@@ -57,6 +59,7 @@ const APP_PROVIDERS = [
   entryComponents: [
     HomeComponent,
     QuestionComponent,
+	QuestionsComponent,
     LoginComponent,
 	  UResultComponent,
     AboutComponent,
