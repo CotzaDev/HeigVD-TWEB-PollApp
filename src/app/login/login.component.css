@@ -1,57 +1,70 @@
-
-#top{
-    position: fixed;
-	top: 50px;
-	width: 100%;
-	heigth: 50px;	
-	text-align: center
+h2 {
+  margin-top: 20px;
+  font-size: 24px;
+  margin-bottom: 40px;
 }
 
-#global
-{
-    float:left;
-    width: 100%;
-	margin-top: 150px;
-	margin-rigth: auto;
-	margin-left: auto;
-      
+.intro {
+  position: absolute;
+  width: 100%;
+  color: #757575;
+  top: 10%;
+  left: 0;
+  text-align: center;
+  display: none;
+  margin-bottom: 100px;
 }
- 
-#left
-{
-    height: 500px;
-    float: left;
-	width: 40%;
-    text-align: center;
+
+.input-group-addon {
+  width: 45px;
+  color: #003748;
 }
- #separate_ligne
-{
-    width:20px;
-    border-left:5px solid gray;
-	margin-left: 10%;
-	margin-right: 10%;
-    height:400px;
-	float: left;
+
+.col-lg-6 {
+  padding-left: 10%;
+  padding-right: 10%;
 }
-#rigth
-{
-    height: 500px;
-    width: 40%;
-	float: left;
-    
+
+.col-lg-6:last-child {
+  margin-top: 100px;
 }
- input{
- text-align:center;
- }
-input[type=username]{
- background: white url('img/user-logo.png') no-repeat left;
- background-size:contain;
+
+@media (max-width: 575px) {
+  .row .row .col-lg-6:first-child {
+    margin-top: 100px;
+  }
 }
-input[type=password]{
- background: white url('img/password-logo.png') no-repeat left;
- background-size:contain;
+
+@media (min-width: 992px) {
+  .row .col-lg-6:last-child {
+    border-left: 2px solid #ccc;
+  }
+
+  .row .col-lg-6:first-child .row:last-child {
+    margin-top: 60px;
+  }
+
+  .col-lg-6:last-child {
+    margin-top: 0px;
+  }
+
+  .intro {
+    display: block;
+  }
 }
-input[type=email]{
- background: white url('img/email-logo.png') no-repeat left;
- background-size:contain;
+
+@media (max-height: 600px) {
+  .intro {
+    display: none !important;
+  }
+}
+
+.btn {
+  width: 130px;
+  height: 40px;
+}
+
+.green {
+  background-color: #4caf50;
+  border-color: #2e7d32;
 }
