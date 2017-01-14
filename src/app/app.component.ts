@@ -5,7 +5,7 @@ import { ViewEncapsulation } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 
-import { AppState } from './app.service';
+import { AppState, IO } from './app.service';
 
 /*
  * App Component
@@ -55,11 +55,14 @@ export class AppComponent implements OnInit {
 
   public name = 'Angular 2 Preboot';
   public appState;
+  public io: IO;
 
   constructor(
     appState: AppState,
+    io: IO,
   ) {
     this.appState = appState;
+    this.io = io;
   }
 
   public ngOnInit() {

@@ -12,7 +12,7 @@ import { AboutComponent } from './about';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 // App is our top level component
 import { AppComponent } from './app.component';
-import { AppState } from './app.service';
+import { AppState, IO } from './app.service';
 import { HomeComponent } from './home';
 import { QuestionComponent } from './question';
 import { LoginComponent } from './login';
@@ -24,6 +24,7 @@ import { XLargeDirective } from './home/x-large';
 // Application wide providers
 const APP_PROVIDERS = [
   AppState,
+  IO,
 
   ...APP_RESOLVER_PROVIDERS,
 ];
@@ -39,7 +40,7 @@ const APP_PROVIDERS = [
     HomeComponent,
     QuestionComponent,
     LoginComponent,
-	UResultComponent,
+	  UResultComponent,
     NoContentComponent,
     XLargeDirective,
   ],
@@ -57,7 +58,7 @@ const APP_PROVIDERS = [
     HomeComponent,
     QuestionComponent,
     LoginComponent,
-	UResultComponent,
+	  UResultComponent,
     AboutComponent,
   ],
 })
@@ -65,6 +66,7 @@ export class AppModule {
   constructor(
     public appRef: ApplicationRef,
     public appState: AppState,
+    public io: IO,
   ) { }
 
 }

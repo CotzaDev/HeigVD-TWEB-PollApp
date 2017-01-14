@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import * as io from 'socket.io-client';
 
 export type InternalStateType = {
   [key: string]: any,
@@ -27,5 +28,18 @@ export class AppState {
   private _clone(object: InternalStateType) {
     // simple object clone
     return JSON.parse(JSON.stringify( object ));
+  }
+}
+
+@Injectable()
+export class IO {
+  private socket: SocketIOClient.Socket;
+
+  constructor(){
+    this.socket = io();
+  }
+
+  public get(): SocketIOClient.Socket {
+    return this.socket;
   }
 }

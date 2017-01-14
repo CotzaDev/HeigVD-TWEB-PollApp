@@ -4,14 +4,14 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "noEmitHelpers": true,
     "strictNullChecks": false,
     "skipDefaultLibCheck": true,
     "pretty": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "baseUrl": "./src",
+    "baseUrl": "",
     "typeRoots": [
       "node_modules/@types"
     ],
@@ -22,13 +22,9 @@
       "es7"
     ],
     "types": [
-      "hammerjs",
-      "jasmine",
-      "node",
-      "selenium-webdriver",
-      "source-map",
-      "uglify-js",
-      "socket.io-client"
+      "socket.io",
+      "express",
+      "node"
     ]
   },
   "exclude": [
@@ -38,12 +34,7 @@
     "src/**/*.e2e.ts",
     "server"
   ],
-  "awesomeTypescriptLoaderOptions": {
-    "forkChecker": true,
-    "useWebpackText": true,
-    "useCache": true
-  },
-  "compileOnSave": false,
-  "buildOnSave": false,
+  "compileOnSave": true,
+  "buildOnSave": true,
   "atom": { "rewriteTsconfig": false }
 }

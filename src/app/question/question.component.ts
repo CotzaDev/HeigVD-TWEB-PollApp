@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 
-import { AppState } from '../app.service';
+import { AppState, IO } from '../app.service';
 import { Observable } from "rxjs/Rx";
 
 @Component({
@@ -24,9 +24,11 @@ export class QuestionComponent implements OnInit {
   private total_time: number;
   public percent: number;
   public percent_color: string;
+
   // TypeScript public modifiers
   constructor(
     public appState: AppState,
+    public io: IO,
   ) {
     this.total_time = 30;
   }
