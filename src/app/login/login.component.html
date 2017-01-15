@@ -29,27 +29,25 @@
         <h2>New user ?</h2>
       </div>
       <div class="row">
-        <form>
-          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-            <div class="input-group-addon"><i class="fa fa-user"></i></div>
-            <input type="text" class="form-control" id="register-username" placeholder="Username">
-          </div>
-          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-            <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-            <input type="email" class="form-control" id="register-email" placeholder="Email">
-          </div>
-          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-            <div class="input-group-addon"><i class="fa fa-key"></i></div>
-            <input type="password" class="form-control" id="register-password" placeholder="Password">
-          </div>
-          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-            <div class="input-group-addon"><i class="fa fa-key"></i></div>
-            <input type="password" class="form-control" id="register-repeat-password" placeholder="Repeat password">
-          </div>
-          <div class="text-xs-center">
-            <button type="submit" class="btn btn-primary">Sign Up</button>
-          </div>
-        </form>
+        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+          <div class="input-group-addon"><i class="fa fa-user"></i></div>
+          <input [(ngModel)]="rUser.username" type="text" class="form-control" id="register-username" placeholder="Username">
+        </div>
+        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+          <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+          <input [(ngModel)]="rUser.email" type="email" class="form-control" id="register-email" placeholder="Email">
+        </div>
+        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+          <div class="input-group-addon"><i class="fa fa-key"></i></div>
+          <input [(ngModel)]="rUser.password" type="password" class="form-control" id="register-password" placeholder="Password">
+        </div>
+        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+          <div class="input-group-addon"><i class="fa fa-key"></i></div>
+          <input type="password" class="form-control" id="register-repeat-password" placeholder="Repeat password">
+        </div>
+        <div class="text-xs-center">
+          <button (click)="rSubmit()" type="button" class="btn btn-primary">Sign Up</button>
+        </div>
       </div>
     </div>
   </div>

@@ -3,18 +3,27 @@
 import * as express from 'express';
 import * as http from 'http';
 import * as socketio from 'socket.io';
+import * as mongoose from 'mongoose';
+import * as bodyParser from "body-parser";
 
+import { Login } from './controllers/login/api';
 
 export class Server {
 
-    private app: express.Express;
+    private app: express.Application;
     private serv: http.Server;
-    private io: any;
+    private io: SocketIO.Server;
+    private db: mongoose.Connection;
 
     constructor() {
         this.app = express();
-        this.serv = http.Server(this.app);
+        this.serv = http.createServer(this.app);
         this.io = socketio(this.serv);
+
+        (<any>mongoose).Promise = Promise;
+        this.db = mongoose.createConnection('mongodb://localhost:32768/pollapp');
+
+        this.app.use(bodyParser.json());
 
         this.app.use('/', express.static('../dist'));
         this.app.set('port', (process.env.PORT || 5000));
@@ -25,7 +34,9 @@ export class Server {
     }
 
     public setRoutes() {
+        let login: Login = new Login();
         this.app.get('/test', this._RenderHelloWorld);
+        this.app.post('/api/register', login.register.bind(login.register));
     }
 
     public startServer() {

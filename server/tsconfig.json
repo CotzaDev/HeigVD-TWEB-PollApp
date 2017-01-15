@@ -24,7 +24,13 @@
     "types": [
       "socket.io",
       "express",
-      "node"
+      "express-serve-static-core",
+      "serve-static",
+      "node",
+      "mine",
+      "mongodb",
+      "mongoose",
+      "body-parser"
     ]
   },
   "exclude": [
