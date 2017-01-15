@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { Ng2Webstorage } from 'ng2-webstorage';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -40,7 +41,7 @@ const APP_PROVIDERS = [
     AboutComponent,
     HomeComponent,
     QuestionComponent,
-	QuestionsComponent,
+	  QuestionsComponent,
     LoginComponent,
 	  UResultComponent,
     NoContentComponent,
@@ -52,6 +53,7 @@ const APP_PROVIDERS = [
     HttpModule,
     RouterModule.forRoot(ROUTES, { useHash: true }),
     NgbModule.forRoot(),
+    Ng2Webstorage,
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     APP_PROVIDERS,
@@ -59,7 +61,7 @@ const APP_PROVIDERS = [
   entryComponents: [
     HomeComponent,
     QuestionComponent,
-	QuestionsComponent,
+	  QuestionsComponent,
     LoginComponent,
 	  UResultComponent,
     AboutComponent,

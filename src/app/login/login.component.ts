@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 
 import { AppState } from '../app.service';
-import { RUser } from './user';
+import { RUser, Credentials } from './user';
 import { LoginService } from './login.service';
 
 @Component({
@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   // Set our default values
   public localState = { value: '' };
   private rUser: RUser;
+  private cred: Credentials;
 
   // TypeScript public modifiers
   constructor(
@@ -30,6 +31,7 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService,
   ) {
     this.rUser = new RUser();
+    this.cred = new Credentials();
   }
 
   public ngOnInit() {
@@ -39,6 +41,10 @@ export class LoginComponent implements OnInit {
 
   public rSubmit() {
     this.loginService.register(this.rUser).then();
+  }
+
+  public lSubmit() {
+    this.loginService.login(this.cred).then();
   }
 
   public submitState(value: string) {

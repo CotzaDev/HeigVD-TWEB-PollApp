@@ -9,19 +9,17 @@
         <h2>Already have an account ?</h2>
       </div>
       <div class="row">
-        <form>
-          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-            <div class="input-group-addon"><i class="fa fa-user"></i></div>
-            <input type="text" class="form-control" id="login-username" placeholder="Username">
-          </div>
-          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-            <div class="input-group-addon"><i class="fa fa-key"></i></div>
-            <input type="password" class="form-control" id="login-password" placeholder="Password">
-          </div>
-          <div class="text-xs-center">
-            <button type="submit" class="btn btn-primary green">Sign In</button>
-          </div>
-        </form>
+        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+          <div class="input-group-addon"><i class="fa fa-user"></i></div>
+          <input [(ngModel)]="cred.username" type="text" class="form-control" id="login-username" placeholder="Username">
+        </div>
+        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+          <div class="input-group-addon"><i class="fa fa-key"></i></div>
+          <input [(ngModel)]="cred.password" type="password" class="form-control" id="login-password" placeholder="Password">
+        </div>
+        <div class="text-xs-center">
+          <button (click)="lSubmit()" type="submit" class="btn btn-primary green">Sign In</button>
+        </div>
       </div>
     </div>
     <div class="col-lg-6">

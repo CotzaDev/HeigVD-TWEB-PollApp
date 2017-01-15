@@ -18,10 +18,12 @@ class jwtPayload {
 
 export class Login {
   public register(req: express.Request, res: express.Response) {
-    console.log(req.body);
+
+    let emailRe: RegExp = /\S+@\S+\.\S+/;
 
     if(!req.body.username || !req.body.email || !req.body.password ||
-      req.body.password.length < 6 || req.body.username.length < 4) {
+      req.body.password.length < 6 || req.body.username.length < 4 ||
+      !emailRe.test(req.body.email)) {
       return res.status(422).send("Invalid or missing user data");
     }
 

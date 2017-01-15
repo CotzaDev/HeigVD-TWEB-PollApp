@@ -1,5 +1,10 @@
 export class RUser {
-  public username: String;
-  public email: String;
-  public password: String;
+  public username: string;
+  public email: string;
+  public password: string;
+}
+
+export class Credentials {
+  public username: string;
+  public password: string;
 }
