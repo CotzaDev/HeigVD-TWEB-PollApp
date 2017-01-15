@@ -12,9 +12,6 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "baseUrl": "",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
     "lib": [
       "dom",
       "es5",
@@ -30,7 +27,10 @@
       "mine",
       "mongodb",
       "mongoose",
-      "body-parser"
+      "body-parser",
+      "passport",
+      "passport-jwt",
+      "jsonwebtoken"
     ]
   },
   "exclude": [

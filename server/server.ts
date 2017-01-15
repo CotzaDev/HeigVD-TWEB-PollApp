@@ -13,7 +13,6 @@ export class Server {
     private app: express.Application;
     private serv: http.Server;
     private io: SocketIO.Server;
-    private db: mongoose.Connection;
 
     constructor() {
         this.app = express();
@@ -21,7 +20,7 @@ export class Server {
         this.io = socketio(this.serv);
 
         (<any>mongoose).Promise = Promise;
-        this.db = mongoose.createConnection('mongodb://localhost:32768/pollapp');
+        mongoose.connect('mongodb://localhost:32768/pollapp');
 
         this.app.use(bodyParser.json());
 
@@ -37,6 +36,7 @@ export class Server {
         let login: Login = new Login();
         this.app.get('/test', this._RenderHelloWorld);
         this.app.post('/api/register', login.register.bind(login.register));
+        this.app.post('/api/login', login.login.bind(login.login));
     }
 
     public startServer() {
