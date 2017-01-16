@@ -1,4 +1,20 @@
-/*styles for question content only*/
+.container-fluid {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.row-fluid {
+  width: 80%;
+}
+
+@media (min-width: 1200px) {
+  .row-fluid {
+    width: 50%;
+  }
+}
+
 .timmer {
   width: 100%;
   top: 0px;

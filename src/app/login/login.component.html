@@ -2,50 +2,54 @@
   <p>With a Poll App account you can create polls and submit them to your audience</p>
 </div>
 
-<div class="container">
-  <div class="row">
-    <div class="col-lg-6">
-      <div class="row">
-        <h2>Already have an account ?</h2>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="row">
+          <h2>Already have an account ?</h2>
+        </div>
+        <div class="row">
+          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+            <div class="input-group-addon"><i class="fa fa-user"></i></div>
+            <input [(ngModel)]="cred.username" type="text" class="form-control" id="login-username" placeholder="Username">
+          </div>
+          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+            <div class="input-group-addon"><i class="fa fa-key"></i></div>
+            <input [(ngModel)]="cred.password" type="password" class="form-control" id="login-password" placeholder="Password">
+          </div>
+          <div class="text-xs-center">
+            <button (click)="lSubmit()" type="submit" class="btn btn-primary green">Sign In</button>
+          </div>
+        </div>
       </div>
-      <div class="row">
-        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-          <div class="input-group-addon"><i class="fa fa-user"></i></div>
-          <input [(ngModel)]="cred.username" type="text" class="form-control" id="login-username" placeholder="Username">
+      <div class="col-lg-6">
+        <div class="row">
+          <h2>New user ?</h2>
         </div>
-        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-          <div class="input-group-addon"><i class="fa fa-key"></i></div>
-          <input [(ngModel)]="cred.password" type="password" class="form-control" id="login-password" placeholder="Password">
-        </div>
-        <div class="text-xs-center">
-          <button (click)="lSubmit()" type="submit" class="btn btn-primary green">Sign In</button>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-6">
-      <div class="row">
-        <h2>New user ?</h2>
-      </div>
-      <div class="row">
-        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-          <div class="input-group-addon"><i class="fa fa-user"></i></div>
-          <input [(ngModel)]="rUser.username" type="text" class="form-control" id="register-username" placeholder="Username">
-        </div>
-        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-          <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-          <input [(ngModel)]="rUser.email" type="email" class="form-control" id="register-email" placeholder="Email">
-        </div>
-        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-          <div class="input-group-addon"><i class="fa fa-key"></i></div>
-          <input [(ngModel)]="rUser.password" type="password" class="form-control" id="register-password" placeholder="Password">
-        </div>
-        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-          <div class="input-group-addon"><i class="fa fa-key"></i></div>
-          <input type="password" class="form-control" id="register-repeat-password" placeholder="Repeat password">
-        </div>
-        <div class="text-xs-center">
-          <button (click)="rSubmit()" type="button" class="btn btn-primary">Sign Up</button>
-        </div>
+        <form (ngSubmit)="rSubmit()">
+          <div class="row">
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+              <div class="input-group-addon"><i class="fa fa-user"></i></div>
+              <input [(ngModel)]="rUser.username" type="text" class="form-control" id="register-username" placeholder="Username">
+            </div>
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+              <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+              <input [(ngModel)]="rUser.email" type="email" class="form-control" id="register-email" placeholder="Email">
+            </div>
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+              <div class="input-group-addon"><i class="fa fa-key"></i></div>
+              <input [(ngModel)]="rUser.password" type="password" class="form-control" id="register-password" placeholder="Password">
+            </div>
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+              <div class="input-group-addon"><i class="fa fa-key"></i></div>
+              <input type="password" class="form-control" id="register-repeat-password" placeholder="Repeat password">
+            </div>
+            <div class="text-xs-center">
+              <button type="submit" class="btn btn-primary">Sign Up</button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
