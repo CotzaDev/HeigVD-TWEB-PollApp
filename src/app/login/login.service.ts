@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
 import { SessionStorage } from 'ng2-webstorage';
 import { RUser, Credentials } from './user';
+import {NgIf} from '@angular2/common';
 
 @Injectable()
 export class LoginService {
 
   @SessionStorage()
   private token: string;
-
+  public error = '';
   private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http: Http) { }
@@ -33,12 +34,12 @@ export class LoginService {
       return Promise.resolve();
     }
     else {
+	  this.error = 'Username or password is incorrect';
       return Promise.reject("Broken response");
     }
   }
 
   private handleError(error: any): Promise<any> {
-    console.error('An error occurred on register', error);
     return Promise.reject(error.message || error);
   }
 }
