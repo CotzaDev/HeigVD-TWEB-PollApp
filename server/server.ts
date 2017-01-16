@@ -20,7 +20,7 @@ export class Server {
         this.io = socketio(this.serv);
 
         (<any>mongoose).Promise = Promise;
-        mongoose.connect('mongodb://localhost:32768/pollapp');
+        mongoose.connect('mongodb://localhost:27017/pollapp');
 
         this.app.use(bodyParser.json());
 

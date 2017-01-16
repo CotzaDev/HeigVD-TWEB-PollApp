@@ -24,7 +24,7 @@
       "express-serve-static-core",
       "serve-static",
       "node",
-      "mine",
+      "mime",
       "mongodb",
       "mongoose",
       "body-parser",

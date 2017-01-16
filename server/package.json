@@ -17,6 +17,9 @@
     "passport": "^0.3.2",
     "passport-jwt": "^2.2.1",
     "socket.io": "^1.7.2",
-    "typescript": "^2.1.4"
+    "typescript": "^2.1.4",
+	"typeRoots": [
+      "node_modules/@types"
+    ],
   }
 }
