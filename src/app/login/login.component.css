@@ -74,12 +74,3 @@ h2 {
   width: 130px;
   height: 40px;
 }
-
-.green {
-  background-color: #4caf50;
-  border-color: #2e7d32;
-}
-
-.green:hover {
-  background-color: #2e7d32;
-}

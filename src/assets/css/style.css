@@ -60,3 +60,20 @@ nav {
   top: 0;
   right: 0;
 }
+
+.btn.green {
+  background-color: #4caf50;
+  border-color: #2e7d32;
+}
+
+.btn.green:hover {
+  background-color: #2e7d32;
+}
+
+.btn.round {
+  border-radius: 30px;
+  font-size: 32px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+}
