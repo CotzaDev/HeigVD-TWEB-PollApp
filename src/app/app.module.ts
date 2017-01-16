@@ -19,6 +19,7 @@ import { QuestionComponent } from './question';
 import { QuestionsComponent } from './questions';
 import { LoginComponent } from './login';
 import { UResultComponent } from './uResult';
+import { MasterComponent } from './master';
 import { NoContentComponent } from './no-content';
 import { ROUTES } from './app.routes';
 import { XLargeDirective } from './home/x-large';
@@ -44,6 +45,7 @@ const APP_PROVIDERS = [
 	  QuestionsComponent,
     LoginComponent,
 	  UResultComponent,
+    MasterComponent,
     NoContentComponent,
     XLargeDirective,
   ],
@@ -64,6 +66,7 @@ const APP_PROVIDERS = [
 	  QuestionsComponent,
     LoginComponent,
 	  UResultComponent,
+    MasterComponent,
     AboutComponent,
   ],
 })
