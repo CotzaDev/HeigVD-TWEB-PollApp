@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
 import { SessionStorage } from 'ng2-webstorage';
 import { RUser, Credentials } from './user';
-import {NgIf} from '@angular2/common';
+
 
 @Injectable()
 export class LoginService {

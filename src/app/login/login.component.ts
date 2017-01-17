@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {NgIf} from 'angular2/common';
+
 
 import { AppState } from '../app.service';
 import { RUser, Credentials } from './user';
@@ -54,7 +54,6 @@ export class LoginComponent implements OnInit {
   public lSubmit() {
     this.loginService.login(this.cred).then(() => {
       this.router.navigate(['/master']);
-	  this.error = 'Username or password is incorrect';
     });
 	
   }
