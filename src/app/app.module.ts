@@ -22,6 +22,7 @@ import { UResultComponent } from './uResult';
 import { MasterComponent } from './master';
 import { TopBarComponent } from './master/top-bar';
 import { SidebarComponent } from './master/sidebar';
+import { MQuestionComponent } from './master/mQuestion';
 import { NoContentComponent } from './no-content';
 import { ROUTES } from './app.routes';
 import { XLargeDirective } from './home/x-large';
@@ -44,12 +45,13 @@ const APP_PROVIDERS = [
     AboutComponent,
     HomeComponent,
     QuestionComponent,
-	  QuestionsComponent,
+	QuestionsComponent,
     LoginComponent,
-	  UResultComponent,
+	UResultComponent,
     MasterComponent,
     TopBarComponent,
     SidebarComponent,
+	MQuestionComponent,
     NoContentComponent,
     XLargeDirective,
   ],
