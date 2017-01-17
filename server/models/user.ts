@@ -1,24 +1,23 @@
-import * as mongoose from "mongoose";
 import * as crypto from 'crypto';
 import { IUser, IUserModel, Model } from './mongoose/user';
+import { IGroup } from './mongoose/group';
 
 export class User {
-  private schema: mongoose.Schema;
-  private model: IUserModel;
+  public model: IUserModel;
 
   constructor(data?: IUser) {
-    this.schema = new mongoose.Schema({
-      username: { type: String, unique: true, required: true },
-      email: { type: String, unique: true, required: true },
-      password: { type: String, required: true }
-    });
-
     this.model = new Model();
 
     if(data) {
       this.username = data.username;
       this.email = data.email;
       this.password = data.password;
+
+      this.model.groups = data.groups;
+
+      if((<any>data)._id) {
+        this.model._id = (<any>data)._id;
+      }
     }
   }
 
@@ -80,5 +79,9 @@ export class User {
 
   set password(value: string) {
     this.model.password = value;
+  }
+
+  get groups(): [IGroup] {
+    return this.model.groups;
   }
 }
