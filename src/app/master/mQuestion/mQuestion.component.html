@@ -4,10 +4,10 @@
 	  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Answer Delay
 	  <span class="caret"></span></button>
 	  <ul class="dropdown-menu">
-		<li class="active"><a href="#">15 s</a></li>
-		<li class="disabled"><a href="#">30 s</a></li>
-		<li class="disabled"><a href="#">1 min</a></li>
-		<li class="disabled"><a href="#">1 min 30 s</a></li>
+		<li class="active"><a href="#" ng-model="timer">15 s</a></li>
+		<li class="disabled"><a href="#" ng-model="timer">30 s</a></li>
+		<li class="disabled"><a href="#" ng-model="timer">1 min</a></li>
+		<li class="disabled"><a href="#" ng-model="timer">1 min 30 s</a></li>
 	  </ul>
 	</div>
 	
@@ -23,12 +23,15 @@
         <tbody>
           <tr>
             <td>Drinking beer</td>
+			<td data-ng-if="submitted"><input type="checkbox" value=""><i class="fa fa-trash"></i></td>
           </tr>
           <tr>
             <td>Nothing</td>
+			<td data-ng-if="submitted"><input type="checkbox" value=""><i class="fa fa-trash"></i></td>
           </tr>
           <tr>
             <td>Making webapps</td>
+			<td data-ng-if="submitted"><input type="checkbox" value=""><i class="fa fa-trash"></i></td>
           </tr>
         </tbody>
       </table>
