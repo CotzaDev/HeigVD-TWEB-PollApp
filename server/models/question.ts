@@ -16,8 +16,6 @@ export class Question {
     this.index--;
     this._question = this.model.groups[index].questions[this.index];
 
-    this.model.isNew = false;
-
     if(data) {
       this.question = data.question,
       this.multi_answers = data.multi_answers,

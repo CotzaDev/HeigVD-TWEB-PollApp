@@ -6,19 +6,18 @@ import { Group } from './group';
 export class User {
   public model: IUserModel;
 
-  constructor(data?: IUser) {
+  constructor(data?: IUser, model?: IUserModel) {
     this.model = new Model();
 
-    if(data) {
+    if(model) {
+      this.model = model;
+    }
+    else if(data) {
       this.username = data.username;
       this.email = data.email;
       this.password = data.password;
 
       this.model.groups = data.groups;
-
-      /*if((<any>data)._id) {
-        this.model._id = (<any>data)._id;
-      }*/
     }
   }
 
@@ -34,8 +33,6 @@ export class User {
   }
 
   public addGroup(data: IGroup): Promise<Group> {
-    this.model.isNew = false;
-    
     let index = this.model.groups.push({} as IGroup);
     index--;
     let group: IGroup = this.model.groups[index];
@@ -53,9 +50,9 @@ export class User {
     let result: User;
 
     return Model.findOne({"username": username})
-      .then((data: IUser) => {
+      .then((data: IUserModel) => {
         if(data) {
-          result = new User(data);
+          result = new User(null, data);
           return Promise.resolve(result);
         }
         return Promise.reject("No user found");

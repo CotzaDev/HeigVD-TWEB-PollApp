@@ -69,7 +69,7 @@ export class Server {
 
     private getUser(payload: any, done: passJwt.VerifiedCallback) {
       User.findOne(payload.username)
-        .then((user: User) => {done(null, user); console.log(user);})
+        .then((user: User) => done(null, user))
         .catch(() => done("User not present in DB"));
     }
 }

@@ -1,24 +1,21 @@
-import { IUserModel } from './mongoose/user';
+import { IGroupModel, Model } from './mongoose/group';
 import { IGroup } from './mongoose/group';
 import { IQuestion } from './mongoose/question';
 import { User } from './user';
 
 export class Group {
-  private model: IUserModel;
-  private group: IGroup;
+  private model: IGroupModel;
   public user: User;
 
-  constructor(data?: IGroup) {
+  constructor(data?: IGroup, model?: IGroupModel) {
+    this.model = new Model();
 
-    if(data) {
-      this.model.isNew = false;
-
+    if(model) {
+      this.model = model;
+    }
+    else if(data) {
       this.name = data.name;
       this.questions = data.questions;
-
-      if((<any>data)._id) {
-        (<any>this.group)._id = (<any>data)._id;
-      }
     }
   }
 
@@ -32,35 +29,37 @@ export class Group {
       });
   }
 
-  /*public static findById(id: string): Group {
-    return Model.findOne({"username": username})
-      .then((data: IUser) => {
+  public static findById(id: string): Promise<Group> {
+    let result: Group;
+
+    return Model.findOne({"_id": id})
+      .then((data: IGroupModel) => {
         if(data) {
-          result = new User(data);
+          result = new Group(null, data);
           return Promise.resolve(result);
         }
         return Promise.reject("No user found");
       });
-  }*/
+  }
 
   get id(): string {
-    return this.group.id;
+    return this.model.id;
   }
 
   get name(): string {
-    return this.group.name;
+    return this.model.name;
   }
 
   set name(value: string) {
-    this.group.name = value;
+    this.model.name = value;
   }
 
   get questions(): [IQuestion] {
-    return this.group.questions;
+    return this.model.questions;
   }
 
   set questions(value: [IQuestion]) {
-    this.group.questions = value;
+    this.model.questions = value;
   }
 
   public toJSON(): Object {
