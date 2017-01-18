@@ -15,4 +15,8 @@ top-bar {
 
 .main {
   height: 100%;
+  padding: 0;
+}
+.question{
+  height: 100%;
 }

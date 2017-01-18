@@ -9,19 +9,23 @@
         <div class="row">
           <h2>Already have an account ?</h2>
         </div>
-        <div class="row">
-          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-            <div class="input-group-addon"><i class="fa fa-user"></i></div>
-            <input [(ngModel)]="cred.username" type="text" class="form-control" id="login-username" placeholder="Username" required>
-          </div>
-          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-            <div class="input-group-addon"><i class="fa fa-key"></i></div>
-            <input [(ngModel)]="cred.password" type="password" class="form-control" id="login-password" placeholder="Password" required>
-          </div>
-          <div class="text-xs-center">
-            <button (click)="lSubmit()" type="submit" class="btn btn-primary green">Sign In</button>
-          </div>
-        </div>
+		<form (ngSubmit)="lSubmit()" #f="ngForm" novalidate>
+			<div class="row" >
+			  <div class="input-group mb-2 mr-sm-2 mb-sm-0" [ngClass]="{ 'has-error': f.submitted && !cred.username.valid }">
+				<div class="input-group-addon"><i class="fa fa-user"></i></div>
+				<input [(ngModel)]="cred.username" type="text" name= "cred.username" class="form-control" id="login-username" placeholder="Username" required>
+				<div *ngIf="f.submitted && !cred.username.valid" class="help-block">Username is required</div>
+			  </div>
+			  <div class="input-group mb-2 mr-sm-2 mb-sm-0" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+				<div class="input-group-addon"><i class="fa fa-key"></i></div>
+				<input [(ngModel)]="cred.password" type="password" class="form-control" id="login-password" placeholder="Password" required>
+				<div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+			  </div>
+			  <div class="text-xs-center">
+				<button (click)="lSubmit()" type="submit" class="btn btn-primary green">Sign In</button>
+			  </div>
+			</div>
+		</form>
       </div>
       <div class="col-lg-6">
         <div class="row">
