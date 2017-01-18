@@ -1,21 +1,24 @@
 import { IUserModel } from './mongoose/user';
 import { IGroup } from './mongoose/group';
+import { IQuestion } from './mongoose/question';
+import { User } from './user';
 
 export class Group {
   private model: IUserModel;
   private group: IGroup;
-  private index: number;
+  public user: User;
 
-  constructor(userModel: IUserModel, data?: IGroup) {
-    this.model = userModel;
-    this.index = this.model.groups.push({} as IGroup);
-    this.index--;
-    this.group = this.model.groups[this.index];
-
-    this.model.isNew = false;
+  constructor(data?: IGroup) {
 
     if(data) {
+      this.model.isNew = false;
+
       this.name = data.name;
+      this.questions = data.questions;
+
+      if((<any>data)._id) {
+        (<any>this.group)._id = (<any>data)._id;
+      }
     }
   }
 
@@ -29,6 +32,17 @@ export class Group {
       });
   }
 
+  /*public static findById(id: string): Group {
+    return Model.findOne({"username": username})
+      .then((data: IUser) => {
+        if(data) {
+          result = new User(data);
+          return Promise.resolve(result);
+        }
+        return Promise.reject("No user found");
+      });
+  }*/
+
   get id(): string {
     return this.group.id;
   }
@@ -41,10 +55,19 @@ export class Group {
     this.group.name = value;
   }
 
+  get questions(): [IQuestion] {
+    return this.group.questions;
+  }
+
+  set questions(value: [IQuestion]) {
+    this.group.questions = value;
+  }
+
   public toJSON(): Object {
     let values: IGroup = <IGroup>{};
     values.id = this.id;
     values.name = this.name;
+    values.questions = this.questions;
 
     return values;
   }

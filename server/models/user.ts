@@ -1,6 +1,7 @@
 import * as crypto from 'crypto';
 import { IUser, IUserModel, Model } from './mongoose/user';
 import { IGroup } from './mongoose/group';
+import { Group } from './group';
 
 export class User {
   public model: IUserModel;
@@ -15,9 +16,9 @@ export class User {
 
       this.model.groups = data.groups;
 
-      if((<any>data)._id) {
+      /*if((<any>data)._id) {
         this.model._id = (<any>data)._id;
-      }
+      }*/
     }
   }
 
@@ -29,6 +30,22 @@ export class User {
       })
       .catch((err: Error) => {
         return Promise.reject(err);
+      });
+  }
+
+  public addGroup(data: IGroup): Promise<Group> {
+    this.model.isNew = false;
+    
+    let index = this.model.groups.push({} as IGroup);
+    index--;
+    let group: IGroup = this.model.groups[index];
+
+    group.name = data.name;
+    group.questions = data.questions;
+
+    return this.save()
+      .then(() => {
+        return Promise.resolve(new Group(this.groups[index]));
       });
   }
 

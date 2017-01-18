@@ -59,7 +59,7 @@ const APP_PROVIDERS = [
     HttpModule,
     RouterModule.forRoot(ROUTES, { useHash: true }),
     NgbModule.forRoot(),
-    Ng2Webstorage,
+    Ng2Webstorage
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     APP_PROVIDERS,

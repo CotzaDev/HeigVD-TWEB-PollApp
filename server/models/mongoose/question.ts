@@ -3,6 +3,7 @@ import { answerSchema, IAnswer } from './answer';
 
 module QuestionModel {
   export interface IQuestion {
+    id: string,
     question: string,
     multi_answers: Boolean,
     answers: [IAnswer]

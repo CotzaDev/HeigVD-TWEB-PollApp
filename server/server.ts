@@ -53,6 +53,7 @@ export class Server {
         this.app.post('/api/login', login.login.bind(login.login));
         this.app.get('/api/question/all', passport.authenticate('jwt', { session: false}), questions.getAll.bind(questions.getAll));
         this.app.post('/api/group/add', passport.authenticate('jwt', { session: false}), questions.addGroup.bind(questions.addGroup));
+        this.app.post('/api/group/:index/question/add', passport.authenticate('jwt', { session: false}), questions.addQuestion.bind(questions.addQuestion));
     }
 
     public startServer() {
@@ -68,7 +69,7 @@ export class Server {
 
     private getUser(payload: any, done: passJwt.VerifiedCallback) {
       User.findOne(payload.username)
-        .then((user: User) => done(null, user))
+        .then((user: User) => {done(null, user); console.log(user);})
         .catch(() => done("User not present in DB"));
     }
 }
