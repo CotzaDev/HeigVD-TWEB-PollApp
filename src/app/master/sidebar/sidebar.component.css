@@ -27,4 +27,42 @@
   margin-right: auto;
   margin-top: 20px;
   display: block;
+  margin-bottom: 20px;
+}
+
+.badge-default {
+  background-color: #cccccc;
+}
+.badge-pill {
+  padding-right: .6em;
+  padding-left: .6em;
+  padding-top: .3em;
+  padding-bottom: .3em;
+  border-radius: 10rem;
+}
+.badge {
+  display: inline-block;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+}
+
+.fa-caret-right {
+  color: #cccccc;
+  font-size: 24px;
+  float: right;
+}
+
+.fa-caret-left {
+  color: #cccccc;
+  font-size: 24px;
+  float: left;
+}
+
+.back p {
+  margin-left: 20px;
 }

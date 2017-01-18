@@ -1,8 +1,21 @@
 <div class="container-fluid">
   <ul *ngIf="selectedGroup < 0" class="list-group">
-    <li *ngFor="let group of masterService.questions" class="list-group-item justify-content-between">
-      <span class="badge badge-default badge-pill">{{group.name}}</span>
+    <li *ngFor="let group of masterService.questions; let i = index" class="list-group-item justify-content-between text-capitalize" (click)="openQuestion(i)">
+      {{group.name}}
+      <span class="badge badge-default badge-pill">{{group.questions.length}}</span>
+      <i class="fa fa-caret-right"></i>
     </li>
   </ul>
+
+  <ul *ngIf="selectedGroup >= 0" class="list-group">
+    <li class="list-group-item justify-content-between back" (click)="back()">
+      <i class="fa fa-caret-left"></i>
+      <p>...</p>
+    </li>
+    <li *ngFor="let question of questions; let i = index" class="list-group-item justify-content-between text-capitalize">
+      {{question.question}}
+    </li>
+  </ul>
+
   <button type="button" class="btn green round btn-primary">+</button>
 </div>

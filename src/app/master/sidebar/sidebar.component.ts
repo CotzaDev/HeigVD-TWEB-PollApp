@@ -22,6 +22,7 @@ export class SidebarComponent implements OnInit {
   // Set our default values
   public localState = { value: '' };
   private selectedGroup: number;
+  private questions: [any];
 
   // TypeScript public modifiers
   constructor(
@@ -34,6 +35,15 @@ export class SidebarComponent implements OnInit {
   public ngOnInit() {
     console.log('hello `Question` component');
     console.log(this.masterService.questions);
+  }
+
+  public openQuestion(index: number) {
+    this.selectedGroup = index;
+    this.questions = this.masterService.questions[index].questions;
+  }
+
+  public back() {
+    this.selectedGroup = -1;
   }
 
   public submitState(value: string) {
