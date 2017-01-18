@@ -6,10 +6,10 @@ module QuestionModel {
     id: string,
     question: string,
     multi_answers: Boolean,
-    answers: [IAnswer]
+    answers: any
   }
 
-  export interface QuestionModel extends IQuestion, mongoose.Document{};
+  export interface IQuestionModel extends IQuestion, mongoose.Document{};
 
   export var questionSchema: mongoose.Schema = new mongoose.Schema({
     question: { type: String, unique: true, required: true },
@@ -17,8 +17,8 @@ module QuestionModel {
     answers: [answerSchema]
   });
 
-  export var Model: mongoose.Model<QuestionModel>;
-  Model = mongoose.model<QuestionModel>("Question", questionSchema);
+  export var Model: mongoose.Model<IQuestionModel>;
+  Model = mongoose.model<IQuestionModel>("Question", questionSchema);
 }
 
 export = QuestionModel;

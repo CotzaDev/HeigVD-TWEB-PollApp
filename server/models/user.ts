@@ -1,6 +1,6 @@
 import * as crypto from 'crypto';
 import { IUser, IUserModel, Model } from './mongoose/user';
-import { IGroup } from './mongoose/group';
+import { IGroup, IGroupModel } from './mongoose/group';
 import { Group } from './group';
 
 export class User {
@@ -42,8 +42,13 @@ export class User {
 
     return this.save()
       .then(() => {
-        return Promise.resolve(new Group(this.groups[index]));
+        return Promise.resolve(new Group(this, <IGroupModel>this.groups[index]));
       });
+  }
+
+  public findGroup(id: string): Group {
+    let model: IGroupModel = this.model.groups.id(id);
+    return new Group(this, model);
   }
 
   public static findOne(username: string): Promise<User> {

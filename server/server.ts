@@ -53,7 +53,9 @@ export class Server {
         this.app.post('/api/login', login.login.bind(login.login));
         this.app.get('/api/question/all', passport.authenticate('jwt', { session: false}), questions.getAll.bind(questions.getAll));
         this.app.post('/api/group/add', passport.authenticate('jwt', { session: false}), questions.addGroup.bind(questions.addGroup));
-        this.app.post('/api/group/:index/question/add', passport.authenticate('jwt', { session: false}), questions.addQuestion.bind(questions.addQuestion));
+        this.app.post('/api/group/:id/question/add', passport.authenticate('jwt', { session: false}), questions.addQuestion.bind(questions.addQuestion));
+        this.app.post('/api/group/:id_g/question/:id_q/answer/add', passport.authenticate('jwt', { session: false}), questions.addAnswer.bind(questions.addAnswer));
+
     }
 
     public startServer() {

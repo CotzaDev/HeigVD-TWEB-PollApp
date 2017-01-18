@@ -1,45 +1,41 @@
-import { IGroupModel, Model } from './mongoose/group';
-import { IGroup } from './mongoose/group';
-import { IQuestion } from './mongoose/question';
+import { IUserModel } from './mongoose/user';
+import { IGroupModel } from './mongoose/group';
+import { IQuestion, IQuestionModel } from './mongoose/question';
 import { User } from './user';
+import { Question } from './question';
 
 export class Group {
+  private userModel: IUserModel;
   private model: IGroupModel;
   public user: User;
 
-  constructor(data?: IGroup, model?: IGroupModel) {
-    this.model = new Model();
-
-    if(model) {
-      this.model = model;
-    }
-    else if(data) {
-      this.name = data.name;
-      this.questions = data.questions;
-    }
+  constructor(user: User, model: IGroupModel) {
+    this.user = user;
+    this.userModel = user.model;
+    this.model = model;
   }
 
-  public save(): Promise<void> {
-    return this.model.save()
+  public save(): Promise<any> {
+    return this.userModel.save();
+  }
+
+  public addQuestion(data: IQuestion): Promise<Question> {
+    let index = this.model.questions.push({} as IQuestion);
+    index--;
+    let question: IQuestion = this.model.questions[index];
+
+    question.question = data.question;
+    question.multi_answers = data.multi_answers;
+
+    return this.save()
       .then(() => {
-        return Promise.resolve();
-      })
-      .catch((err: Error) => {
-        return Promise.reject(err);
+        return Promise.resolve(new Question(this.user, <IQuestionModel>this.questions[index]));
       });
   }
 
-  public static findById(id: string): Promise<Group> {
-    let result: Group;
-
-    return Model.findOne({"_id": id})
-      .then((data: IGroupModel) => {
-        if(data) {
-          result = new Group(null, data);
-          return Promise.resolve(result);
-        }
-        return Promise.reject("No user found");
-      });
+  public findQuestion(id: string): Question {
+    let model: IQuestionModel = this.model.questions.id(id);
+    return new Question(this.user, model);
   }
 
   get id(): string {
@@ -56,19 +52,6 @@ export class Group {
 
   get questions(): [IQuestion] {
     return this.model.questions;
-  }
-
-  set questions(value: [IQuestion]) {
-    this.model.questions = value;
-  }
-
-  public toJSON(): Object {
-    let values: IGroup = <IGroup>{};
-    values.id = this.id;
-    values.name = this.name;
-    values.questions = this.questions;
-
-    return values;
   }
 
 }

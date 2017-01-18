@@ -5,7 +5,7 @@ module GroupModel {
   export interface IGroup {
     id: string,
     name: string,
-    questions: [IQuestion]
+    questions: any
   }
 
   export interface IGroupModel extends IGroup, mongoose.Document{};

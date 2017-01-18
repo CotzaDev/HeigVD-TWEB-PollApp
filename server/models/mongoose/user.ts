@@ -1,12 +1,12 @@
 import * as mongoose from "mongoose";
-import { groupSchema, IGroup } from './group';
+import { groupSchema } from './group';
 
 module UserModel {
   export interface IUser {
     username: string,
     email: string,
     password: string,
-    groups: [IGroup]
+    groups: any
   }
 
   export interface IUserModel extends IUser, mongoose.Document{};

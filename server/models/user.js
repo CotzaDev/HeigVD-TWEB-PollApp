@@ -1,19 +1,18 @@
 "use strict";
-var mongoose = require("mongoose");
 var crypto = require("crypto");
 var user_1 = require("./mongoose/user");
+var group_1 = require("./group");
 var User = (function () {
-    function User(data) {
-        this.schema = new mongoose.Schema({
-            username: { type: String, unique: true, required: true },
-            email: { type: String, unique: true, required: true },
-            password: { type: String, required: true }
-        });
+    function User(data, model) {
         this.model = new user_1.Model();
-        if (data) {
+        if (model) {
+            this.model = model;
+        }
+        else if (data) {
             this.username = data.username;
             this.email = data.email;
             this.password = data.password;
+            this.model.groups = data.groups;
         }
     }
     User.prototype.save = function () {
@@ -27,12 +26,28 @@ var User = (function () {
             return Promise.reject(err);
         });
     };
+    User.prototype.addGroup = function (data) {
+        var _this = this;
+        var index = this.model.groups.push({});
+        index--;
+        var group = this.model.groups[index];
+        group.name = data.name;
+        group.questions = data.questions;
+        return this.save()
+            .then(function () {
+            return Promise.resolve(new group_1.Group(_this, _this.groups[index]));
+        });
+    };
+    User.prototype.findGroup = function (id) {
+        var model = this.model.groups.id(id);
+        return new group_1.Group(this, model);
+    };
     User.findOne = function (username) {
         var result;
         return user_1.Model.findOne({ "username": username })
             .then(function (data) {
             if (data) {
-                result = new User(data);
+                result = new User(null, data);
                 return Promise.resolve(result);
             }
             return Promise.reject("No user found");
@@ -77,6 +92,13 @@ var User = (function () {
         },
         set: function (value) {
             this.model.password = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(User.prototype, "groups", {
+        get: function () {
+            return this.model.groups;
         },
         enumerable: true,
         configurable: true
