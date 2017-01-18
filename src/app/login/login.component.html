@@ -18,7 +18,7 @@
 			  </div>
 			  <div class="input-group mb-2 mr-sm-2 mb-sm-0" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
 				<div class="input-group-addon"><i class="fa fa-key"></i></div>
-				<input [(ngModel)]="cred.password" type="password" class="form-control" id="login-password" placeholder="Password" required>
+				<input [(ngModel)]="cred.password" type="password" name= "cred.password" class="form-control" id="login-password" placeholder="Password" required>
 				<div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
 			  </div>
 			  <div class="text-xs-center">

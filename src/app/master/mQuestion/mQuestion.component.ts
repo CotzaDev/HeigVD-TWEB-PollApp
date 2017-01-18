@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { OnInit } from '@angular/core';
 
 import { AppState } from '../../app.service';
+import { IQuestion } from '../questions';
 
 @Component({
   // The selector is what angular internally uses
@@ -19,6 +20,8 @@ import { AppState } from '../../app.service';
 export class MQuestionComponent implements OnInit {
   // Set our default values
   public localState = { value: '' };
+
+  @Input() question: IQuestion;
 
   // TypeScript public modifiers
   constructor(

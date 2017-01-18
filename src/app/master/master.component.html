@@ -5,11 +5,11 @@
   <div class="main-content">
     <div class="row-fluid main">
       <div class="col-sm-4 sidebar">
-        <sidebar></sidebar>
+        <sidebar (onQuestionSelect)="onQuestionSelect($event)"></sidebar>
       </div>
-  	<div class="class=col-sm-8  question">
-  	  <mQuestion></mQuestion>
-  	</div>
+    	<div class="col-sm-8 question">
+    	  <mQuestion [question]="currentQuestion"></mQuestion>
+    	</div>
     </div>
   </div>
 </div>

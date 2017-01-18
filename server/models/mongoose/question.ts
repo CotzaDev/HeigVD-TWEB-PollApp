@@ -1,5 +1,5 @@
 import * as mongoose from "mongoose";
-import { answerSchema, IAnswer } from './answer';
+import { answerSchema } from './answer';
 
 module QuestionModel {
   export interface IQuestion {

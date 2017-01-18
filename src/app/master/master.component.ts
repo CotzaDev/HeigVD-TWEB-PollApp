@@ -5,7 +5,7 @@ import { OnInit } from '@angular/core';
 import { AppState } from '../app.service';
 import { MasterService } from './master.service';
 
-import { IGroup } from './questions';
+import { IGroup, IQuestion } from './questions';
 
 @Component({
   // The selector is what angular internally uses
@@ -25,6 +25,7 @@ export class MasterComponent implements OnInit {
   // Set our default values
   public localState = { value: '' };
   private questions: [IGroup];
+  private currentQuestion: IQuestion;
 
   // TypeScript public modifiers
   constructor(
@@ -44,5 +45,9 @@ export class MasterComponent implements OnInit {
     console.log('submitState', value);
     this.appState.set('value', value);
     this.localState.value = '';
+  }
+
+  onQuestionSelect(question: IQuestion) {
+    this.currentQuestion = question;
   }
 }

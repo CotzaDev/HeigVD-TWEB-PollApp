@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { OnInit } from '@angular/core';
 
 import { AppState } from '../../app.service';
 import { MasterService } from '../master.service';
+import { IQuestion } from '../questions';
 
 @Component({
   // The selector is what angular internally uses
@@ -22,7 +23,10 @@ export class SidebarComponent implements OnInit {
   // Set our default values
   public localState = { value: '' };
   private selectedGroup: number;
+  private selectedQuestion: number;
   private questions: [any];
+
+  @Output() onQuestionSelect = new EventEmitter<IQuestion>();
 
   // TypeScript public modifiers
   constructor(
@@ -37,13 +41,19 @@ export class SidebarComponent implements OnInit {
     console.log(this.masterService.questions);
   }
 
-  public openQuestion(index: number) {
+  public openGroup(index: number) {
     this.selectedGroup = index;
     this.questions = this.masterService.questions[index].questions;
   }
 
   public back() {
     this.selectedGroup = -1;
+  }
+
+  public selectQuestion(index: number) {
+    this.selectedQuestion = index;
+    let question = this.masterService.questions[this.selectedGroup].questions[index];
+    this.onQuestionSelect.emit(question);
   }
 
   public submitState(value: string) {
