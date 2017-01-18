@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DropdownModule } from 'ng2-bootstrap';
 import { Ng2Webstorage } from 'ng2-webstorage';
 
 /*
@@ -45,13 +45,13 @@ const APP_PROVIDERS = [
     AboutComponent,
     HomeComponent,
     QuestionComponent,
-	QuestionsComponent,
+	  QuestionsComponent,
     LoginComponent,
-	UResultComponent,
+	  UResultComponent,
     MasterComponent,
     TopBarComponent,
     SidebarComponent,
-	MQuestionComponent,
+	  MQuestionComponent,
     NoContentComponent,
     XLargeDirective,
   ],
@@ -60,7 +60,7 @@ const APP_PROVIDERS = [
     FormsModule,
     HttpModule,
     RouterModule.forRoot(ROUTES, { useHash: true }),
-    NgbModule.forRoot(),
+    DropdownModule.forRoot(),
     Ng2Webstorage
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection

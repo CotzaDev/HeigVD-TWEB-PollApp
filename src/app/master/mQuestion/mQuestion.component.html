@@ -1,20 +1,21 @@
 <div class="container">
-<div class = "top">
-	<div class="col-sm-4 dropdown">
-	  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Answer Delay
-	  <span class="caret"></span></button>
-	  <ul class="dropdown-menu">
-		<li class="active"><a href="#" ng-model="timer">15 s</a></li>
-		<li class="disabled"><a href="#" ng-model="timer">30 s</a></li>
-		<li class="disabled"><a href="#" ng-model="timer">1 min</a></li>
-		<li class="disabled"><a href="#" ng-model="timer">1 min 30 s</a></li>
-	  </ul>
+	<div class = "top">
+		<div class="col-sm-4 dropdown" dropdown>
+		  <button id="btn btn-primary dropdown-toggle" type="button" class="btn btn-primary" dropdownToggle>
+		    Answer Delay<span class="caret"></span>
+		  </button>
+		  <ul dropdownMenu role="menu" aria-labelledby="single-button">
+		    <li role="menuitem"><a class="dropdown-item" href="#">15 s</a></li>
+		    <li role="menuitem"><a class="dropdown-item" href="#">30 s</a></li>
+		    <li role="menuitem"><a class="dropdown-item" href="#">1 min</a></li>
+		    <li role="menuitem"><a class="dropdown-item" href="#">1 min 30 s</a></li>
+		  </ul>
+		</div>
+
+		<div class ="col-sm-4 bn-submit">
+			<button type="button" class=" btn btn-success">Submit</button>
+		</div>
 	</div>
-	
-	<div class ="col-sm-4 bn-submit">
-		<button type="button" class=" btn btn-success">Submit</button>
-	</div>
-</div>
 
   <div class="row-fluid">
     <p class="question">What are we doing during this course ?</p>
