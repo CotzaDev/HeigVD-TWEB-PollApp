@@ -70,6 +70,15 @@ nav {
   background-color: #2e7d32;
 }
 
+.btn.red {
+  background-color: #b71c1c;
+  border-color: #8b1515;
+}
+
+.btn.red:hover {
+  background-color: #8b1515;
+}
+
 .btn.round {
   border-radius: 30px;
   font-size: 32px;

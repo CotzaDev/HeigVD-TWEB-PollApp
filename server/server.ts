@@ -9,8 +9,9 @@ import * as passJwt from 'passport-jwt';
 import * as passport from 'passport';
 
 import { User } from './models/user';
-import { Login } from './controllers/login/api';
+import { Login, SocketAuth } from './controllers/login/api';
 import { Questions } from './controllers/questions';
+import { RoomManager } from './controllers/rooms';
 
 class JwtOpts implements passJwt.StrategyOptions {
   public jwtFromRequest: passJwt.JwtFromRequestFunction = passJwt.ExtractJwt.fromAuthHeaderWithScheme("Bearer");
@@ -40,9 +41,19 @@ export class Server {
         this.app.use('/', express.static('../dist'));
         this.app.set('port', (process.env.PORT || 5000));
 
-        this.io.on('connection', function(){
-          console.log('a user connected');
+        let auth: SocketAuth = new SocketAuth();
+        let rm: RoomManager = new RoomManager(auth);
+
+        this.io.on('connection', function(socket: SocketIO.Socket){
+          socket.on('authorize', auth.onAuth.bind(auth, socket));
+
+          socket.on('create', rm.onCreate.bind(rm, socket));
+          socket.on('close', rm.onClose.bind(rm, socket));
+
+          console.log('a user connected ' + socket.id);
         });
+
+        this.io.on('disconnect', auth.onDisconnect);
     }
 
     public setRoutes() {
@@ -51,10 +62,10 @@ export class Server {
         this.app.get('/test', this._RenderHelloWorld);
         this.app.post('/api/register', login.register.bind(login.register));
         this.app.post('/api/login', login.login.bind(login.login));
-        this.app.get('/api/question/all', passport.authenticate('jwt', { session: false}), questions.getAll.bind(questions.getAll));
-        this.app.post('/api/group/add', passport.authenticate('jwt', { session: false}), questions.addGroup.bind(questions.addGroup));
-        this.app.post('/api/group/:id/question/add', passport.authenticate('jwt', { session: false}), questions.addQuestion.bind(questions.addQuestion));
-        this.app.post('/api/group/:id_g/question/:id_q/answer/add', passport.authenticate('jwt', { session: false}), questions.addAnswer.bind(questions.addAnswer));
+        this.app.get('/api/question/all', passport.authenticate('jwt', { session: false}), questions.getAll);
+        this.app.post('/api/group/add', passport.authenticate('jwt', { session: false}), questions.addGroup);
+        this.app.post('/api/group/:id/question/add', passport.authenticate('jwt', { session: false}), questions.addQuestion);
+        this.app.post('/api/group/:id_g/question/:id_q/answer/add', passport.authenticate('jwt', { session: false}), questions.addAnswer);
 
     }
 

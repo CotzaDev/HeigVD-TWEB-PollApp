@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 
 import { AppState } from '../../app.service';
+import { TopBarService } from './top-bar.service';
 
 @Component({
   // The selector is what angular internally uses
@@ -10,6 +11,7 @@ import { AppState } from '../../app.service';
   selector: 'top-bar',  // <home></home>
   // We need to tell Angular's Dependency Injection which providers are in our app.
   providers: [
+    TopBarService
   ],
   // Our list of styles in our component. We may add more to compose many styles together
   styleUrls: [ './top-bar.component.css' ],
@@ -23,12 +25,21 @@ export class TopBarComponent implements OnInit {
   // TypeScript public modifiers
   constructor(
     public appState: AppState,
+    private topBarService: TopBarService,
   ) {
   }
 
   public ngOnInit() {
     console.log('hello `Question` component');
     // this.title.getData().subscribe(data => this.data = data);
+  }
+
+  public openRoom(): void {
+    this.topBarService.reqOpenRoom();
+  }
+
+  public closeRoom(): void {
+    this.topBarService.reqCloseRoom();
   }
 
   public submitState(value: string) {

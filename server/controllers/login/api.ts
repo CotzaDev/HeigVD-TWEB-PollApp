@@ -67,7 +67,44 @@ export class Login {
       .catch(() => {
         return res.status(401).send("User not found");
       });
-
-
   }
+}
+
+export class SocketAuth {
+  private authentificated: Map<string, User>;
+
+  constructor() {
+    this.authentificated = new Map<string, User>();
+  }
+
+  public onAuth(socket: SocketIO.Socket, token: string) {
+    jwt.verify(token, jwtKey, (err: Error, decoded: any) => {
+      if(err) {
+        socket.emit('unothorized', 'Invalid token');
+      }
+      else {
+        User.findOne(decoded.username)
+          .then((user: User) => this.authentificated.set(socket.id, user))
+          .catch(() => socket.emit('unothorized', 'User not found in DB')
+        );
+      }
+    });
+  }
+
+  public onDisconnect(socket: SocketIO.Socket) {
+    if(!this.isAuthentificated(socket))
+      return;
+
+    this.authentificated.delete(socket.id);
+  }
+
+  public isAuthentificated(socket: SocketIO.Socket): Boolean {
+    return this.authentificated.has(socket.id);
+  }
+
+  public getUser(socket: SocketIO.Socket): User{
+    return this.authentificated.get(socket.id);
+  }
+
+
 }
