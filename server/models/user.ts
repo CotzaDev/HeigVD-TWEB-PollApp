@@ -2,9 +2,12 @@ import * as crypto from 'crypto';
 import { IUser, IUserModel, Model } from './mongoose/user';
 import { IGroup, IGroupModel } from './mongoose/group';
 import { Group } from './group';
+import { Room } from './room';
 
 export class User {
   public model: IUserModel;
+  public room: Room;
+  public socket: SocketIO.Socket;
 
   constructor(data?: IUser, model?: IUserModel) {
     this.model = new Model();

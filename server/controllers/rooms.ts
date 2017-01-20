@@ -3,19 +3,20 @@ import { User } from '../models/user';
 import { SocketAuth } from './login/api';
 
 export class RoomManager {
-  private list: Map<string, Room>;
+  private listByID: Map<string, Room>;
+  private listByConnection: Map<string, Room>;
   private auth: SocketAuth;
 
   constructor(auth: SocketAuth) {
     this.auth = auth;
-    this.list = new Map<string, Room>();
+    this.listByID = new Map<string, Room>();
   }
 
   public onCreate(socket: SocketIO.Socket) {
     let user: User = this.auth.getUser(socket);
-    let room: Room = new Room(this.list);
+    let room: Room = new Room(user, this.listByID);
 
-    this.list.set(room.id, room);
+    this.listByID.set(room.id, room);
     user.room = room;
 
     socket.emit('created', room.id);
@@ -24,9 +25,23 @@ export class RoomManager {
   public onClose(socket: SocketIO.Socket) {
     let user: User = this.auth.getUser(socket);
 
-    this.list.delete(user.room.id);
+    this.listByID.delete(user.room.id);
     user.room = null;
 
     socket.emit('closed');
+  }
+
+  public onJoin(socket: SocketIO.Socket, roomID: string) {
+    if(this.listByID.has(roomID)) {
+      let room: Room = this.listByID.get(roomID);
+      this.listByConnection.set(socket.id, room);
+      room.nbConnected ++;
+
+      socket.join(room.id);
+      socket.emit('room200');
+    }
+    else {
+      socket.emit('room404');
+    }
   }
 }

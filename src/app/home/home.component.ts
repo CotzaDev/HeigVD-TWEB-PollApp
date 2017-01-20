@@ -38,7 +38,17 @@ export class HomeComponent implements OnInit {
     this.localState.value = '';
   }
 
-  public switch(e: any, previous: any, next: any) {
+  public switch(e: any, next: any) {
+    // 13 = enter
+    if(e.keyCode != 13)
+      e.target.value = "";
+
+    if(next) {
+      next.focus();
+    }
+  }
+
+  public ctrl(e: any, previous, next) {
     // 37 = left arrow
     if(e.keyCode == 37 && previous) {
       previous.focus();
@@ -50,18 +60,9 @@ export class HomeComponent implements OnInit {
       return;
     }
 
-    // 8 = return
-    if(e.keyCode != 8 && next) {
-      next.focus();
-    }
-    else if(e.keyCode == 8 && previous) {
+    if(e.keyCode == 8 && e.target.value == '' && previous) {
       previous.focus();
-    }
-  }
-
-  public clear(e: any) {
-    if(e.keyCode != 37 && e.keyCode != 39) {
-      e.target.value = "";
+      return;
     }
   }
 }

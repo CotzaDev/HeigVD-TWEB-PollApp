@@ -84,7 +84,10 @@ export class SocketAuth {
       }
       else {
         User.findOne(decoded.username)
-          .then((user: User) => this.authentificated.set(socket.id, user))
+          .then((user: User) => {
+            this.authentificated.set(socket.id, user);
+            user.socket = socket;
+          })
           .catch(() => socket.emit('unothorized', 'User not found in DB')
         );
       }
