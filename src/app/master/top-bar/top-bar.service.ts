@@ -5,11 +5,14 @@ import { IO } from '../../app.service';
 export class TopBarService {
 
   public roomID: string;
+  public nbConnected: number;
 
   constructor(public io: IO) {
     this.roomID = '';
+    this.nbConnected = 0;
     this.io.socket.on('created', (id: string) => this.roomID = id);
     this.io.socket.on('closed', () => this.roomID = '');
+    this.io.socket.on('audienceChanged', (nb: number) => this.nbConnected = nb);
   }
 
   reqOpenRoom(): void {

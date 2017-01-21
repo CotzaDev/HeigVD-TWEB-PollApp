@@ -50,6 +50,8 @@ export class Server {
           socket.on('create', rm.onCreate.bind(rm, socket));
           socket.on('close', rm.onClose.bind(rm, socket));
 
+          socket.on('join', rm.onJoin.bind(rm, socket));
+
           console.log('a user connected ' + socket.id);
         });
 

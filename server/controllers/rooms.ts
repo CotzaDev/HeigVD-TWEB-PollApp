@@ -10,6 +10,7 @@ export class RoomManager {
   constructor(auth: SocketAuth) {
     this.auth = auth;
     this.listByID = new Map<string, Room>();
+    this.listByConnection = new Map<string, Room>();
   }
 
   public onCreate(socket: SocketIO.Socket) {

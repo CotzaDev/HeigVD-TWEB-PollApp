@@ -1,5 +1,5 @@
 import { AboutComponent } from './about';
-import { HomeComponent } from './home';
+import { PollComponent } from './poll';
 import { QuestionComponent } from './question';
 import { QuestionsComponent } from './questions';
 import { LoginComponent } from './login';
@@ -9,8 +9,8 @@ import { NoContentComponent } from './no-content';
 import { Routes } from '@angular/router';
 
 const ROUTES: Routes = [
-  { path: '',      component: HomeComponent },
-  { path: 'home',  component: HomeComponent },
+  { path: '',      component: PollComponent },
+  { path: 'poll/:id', component: PollComponent },
   { path: 'question', component: QuestionComponent },
   { path: 'questions', component: QuestionsComponent },
   { path: 'login', component: LoginComponent },

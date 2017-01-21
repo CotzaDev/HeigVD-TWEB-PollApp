@@ -9,7 +9,7 @@
     </div>
     <div *ngIf="topBarService.roomID != ''" class="col-xs-2 hidable">
       <i class="fa fa-users"></i>
-      <p>18</p>
+      <p>{{topBarService.nbConnected}}</p>
     </div>
     <div *ngIf="topBarService.roomID != ''" class="col-xs-2 hidable">
       <i class="fa fa-clock-o"></i>

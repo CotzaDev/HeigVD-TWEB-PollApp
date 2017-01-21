@@ -14,7 +14,8 @@ import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 // App is our top level component
 import { AppComponent } from './app.component';
 import { AppState, IO } from './app.service';
-import { HomeComponent } from './home';
+import { PollComponent } from './poll';
+import { HomeComponent } from './poll/home';
 import { QuestionComponent } from './question';
 import { QuestionsComponent } from './questions';
 import { LoginComponent } from './login';
@@ -25,7 +26,7 @@ import { SidebarComponent } from './master/sidebar';
 import { MQuestionComponent } from './master/mQuestion';
 import { NoContentComponent } from './no-content';
 import { ROUTES } from './app.routes';
-import { XLargeDirective } from './home/x-large';
+import { XLargeDirective } from './poll/home/x-large';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -44,6 +45,7 @@ const APP_PROVIDERS = [
     AppComponent,
     AboutComponent,
     HomeComponent,
+    PollComponent,
     QuestionComponent,
 	  QuestionsComponent,
     LoginComponent,
@@ -67,7 +69,7 @@ const APP_PROVIDERS = [
     APP_PROVIDERS,
   ],
   entryComponents: [
-    HomeComponent,
+    PollComponent,
     QuestionComponent,
 	  QuestionsComponent,
     LoginComponent,
