@@ -16,10 +16,10 @@ import { AppComponent } from './app.component';
 import { AppState, IO } from './app.service';
 import { PollComponent } from './poll';
 import { HomeComponent } from './poll/home';
-import { QuestionComponent } from './question';
+import { QuestionComponent } from './poll/question';
 import { QuestionsComponent } from './questions';
 import { LoginComponent } from './login';
-import { UResultComponent } from './uResult';
+import { UResultComponent } from './poll/uResult';
 import { MasterComponent } from './master';
 import { TopBarComponent } from './master/top-bar';
 import { SidebarComponent } from './master/sidebar';
@@ -70,10 +70,8 @@ const APP_PROVIDERS = [
   ],
   entryComponents: [
     PollComponent,
-    QuestionComponent,
 	  QuestionsComponent,
     LoginComponent,
-	  UResultComponent,
     MasterComponent,
     AboutComponent,
   ],

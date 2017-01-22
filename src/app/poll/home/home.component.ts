@@ -102,4 +102,11 @@ export class HomeComponent implements OnInit {
       this.submit();
     }
   }
+
+  @Input() set notFound(value: Boolean) {
+    if(value) {
+      this.errorMsg = 'There is no active poll with this ID';
+      this.isIncorrect = true;
+    }
+  }
 }

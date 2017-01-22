@@ -3,19 +3,17 @@
 		<div class="col-sm-6"></div>
 			<div class="col-sm-6">
 			<div class="dropdown" dropdown>
-			  <button id="btn btn-primary dropdown-toggle" type="button" class="btn btn-primary" dropdownToggle>
-			    Answer Delay<span class="caret"></span>
+			  <button id="btn btn-primary dropdown-toggle" type="button" class="btn green btn-primary" dropdownToggle>
+			    Submit<span class="caret"></span>
 			  </button>
 			  <ul dropdownMenu role="menu" aria-labelledby="single-button">
-			    <li role="menuitem"><a class="dropdown-item" href="#">15 s</a></li>
-			    <li role="menuitem"><a class="dropdown-item" href="#">30 s</a></li>
-			    <li role="menuitem"><a class="dropdown-item" href="#">1 min</a></li>
-			    <li role="menuitem"><a class="dropdown-item" href="#">1 min 30 s</a></li>
+					<li role="menuitem"><a class="dropdown-item" disabled>with an answer delay of</a></li>
+					<li class="divider dropdown-divider"></li>
+			    <li role="menuitem"><a (click)="submit(15)" class="dropdown-item">15 s</a></li>
+			    <li role="menuitem"><a (click)="submit(30)" class="dropdown-item">30 s</a></li>
+			    <li role="menuitem"><a (click)="submit(60)" class="dropdown-item">1 min</a></li>
+			    <li role="menuitem"><a (click)="submit(90)" class="dropdown-item">1 min 30 s</a></li>
 			  </ul>
-			</div>
-
-			<div class ="bn-submit">
-				<button type="button" class=" btn btn-success">Submit</button>
 			</div>
 		</div>
 	</div>

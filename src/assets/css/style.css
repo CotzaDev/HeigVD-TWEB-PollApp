@@ -17,6 +17,14 @@ main,
   margin-right: auto;
 }
 
+.logo-annimated {
+  background-image: url(../img/logo-animated.svg);
+  background-repeat: no-repeat;
+  margin-left: auto;
+  margin-right: auto;
+  background-position: center;
+}
+
 .app-header h2 {
   font-size: 15px;
 }

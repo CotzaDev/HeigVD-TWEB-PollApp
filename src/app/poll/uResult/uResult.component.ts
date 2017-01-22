@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { OnInit } from '@angular/core';
 
-import { AppState } from '../app.service';
-import { Observable } from "rxjs/Rx";
+import { AppState } from '../../app.service';
+import { IResults } from '../payload';
 
 @Component({
   // The selector is what angular internally uses
@@ -20,31 +20,22 @@ import { Observable } from "rxjs/Rx";
 export class UResultComponent implements OnInit {
   // Set our default values
   public localState = { value: '' };
-  public time_left: number;
-  private total_time: number;
-  public percent: number;
-  public percent_color: string;
+  @Input() result: IResults;
+  @Input() userResponse: Array<Boolean>;
+
   // TypeScript public modifiers
   constructor(
     public appState: AppState,
   ) {
-    this.total_time = 30;
+  }
+
+  public calcPercent(nb: number): string {
+    return (this.result.responses == 0) ? '0 %' : Math.round(nb / this.result.responses * 100) + ' %';
   }
 
   public ngOnInit() {
     console.log('hello `Result` component');
     // this.title.getData().subscribe(data => this.data = data);
-    Observable.timer(0, 1000).take(this.total_time + 1).subscribe(i => this.timerUpdate(i));
-  }
-   private timerUpdate(time: number): void {
-    this.time_left = this.total_time - time;
-    this.percent = this.time_left / this.total_time * 100;
-
-    // Color (generate CSS HSL string)
-    let a = this.time_left / this.total_time;
-		let b = 120 * a; // 120 => green
-		let c = b + 0;   // 0 => red
-    this.percent_color = 'hsl(' + c + ', 60%, 50%)';
   }
 
   public submitState(value: string) {

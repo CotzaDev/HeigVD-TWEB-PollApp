@@ -23,17 +23,23 @@ export class PollComponent implements OnInit {
   // Set our default values
   public localState = { value: '' };
   public roomID: string;
+  public userResponse: Array<Boolean>;
 
   // TypeScript public modifiers
   constructor(
     public appState: AppState,
     private route: ActivatedRoute,
-    //private pollService: PollService,
+    public pollService: PollService,
   ) {
     this.roomID = this.route.snapshot.params['id'];
     if(!this.roomID)
       this.roomID = '';
 
+  }
+
+  public onUserResponse(response: Array<Boolean>) {
+    console.log(response);
+    this.userResponse = response;
   }
 
   public ngOnInit() {

@@ -25,7 +25,8 @@ export class MasterComponent implements OnInit {
   // Set our default values
   public localState = { value: '' };
   private questions: [IGroup];
-  private currentQuestion: IQuestion;
+  public currentQuestion: IQuestion;
+  public currentGroupID: string;
 
   // TypeScript public modifiers
   constructor(
@@ -49,5 +50,9 @@ export class MasterComponent implements OnInit {
 
   onQuestionSelect(question: IQuestion) {
     this.currentQuestion = question;
+  }
+
+  onGroupSelect(id: string) {
+    this.currentGroupID = id;
   }
 }

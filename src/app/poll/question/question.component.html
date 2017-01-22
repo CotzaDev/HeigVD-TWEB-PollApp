@@ -1,0 +1,24 @@
+<div class="timmer">
+  <div class="progress" [style.width]="percent + '%'" [style.background-color]="percentColor"></div>
+  <p>{{timeLeft}} s</p>
+</div>
+
+<div class="container-fluid">
+  <div *ngIf="!submited" class="row-fluid">
+    <p class="question">{{question.question}}</p>
+    <div class="answers">
+      <table>
+        <tbody>
+          <tr *ngFor="let answer of question.answers; let i = index">
+            <td (click)="submit(i)">{{answer}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div *ngIf="submited" class="row-fluid">
+    <p class="submited">Your answer has been sent</p>
+    <p class="submited">Waiting for results ...</p>
+  </div>
+</div>

@@ -42,7 +42,7 @@ export class Server {
         this.app.set('port', (process.env.PORT || 5000));
 
         let auth: SocketAuth = new SocketAuth();
-        let rm: RoomManager = new RoomManager(auth);
+        let rm: RoomManager = new RoomManager(this.io, auth);
 
         this.io.on('connection', function(socket: SocketIO.Socket){
           socket.on('authorize', auth.onAuth.bind(auth, socket));
@@ -51,6 +51,8 @@ export class Server {
           socket.on('close', rm.onClose.bind(rm, socket));
 
           socket.on('join', rm.onJoin.bind(rm, socket));
+          socket.on('sendQuestion', rm.onQuestion.bind(rm, socket));
+          socket.on('sendAnswer', rm.onAnswer.bind(rm, socket));
 
           console.log('a user connected ' + socket.id);
         });

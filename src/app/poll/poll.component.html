@@ -1,1 +1,12 @@
-<home [id]="roomID"></home>
+<home *ngIf="pollService.status == 0" [id]="roomID" [notFound]="pollService.notFound"></home>
+
+<div *ngIf="pollService.status == 1" id="waiting">
+  <div>
+    <div class="logo-annimated"></div>
+    <p>Waiting for questions ...</p>
+  </div>
+</div>
+
+<question *ngIf="pollService.status == 2" [data]="pollService.question" (onUserResponse)="onUserResponse($event)"></question>
+
+<result *ngIf="pollService.status == 4" [result]="pollService.result" [userResponse]="userResponse"></result>

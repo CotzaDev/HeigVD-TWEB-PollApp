@@ -25,7 +25,8 @@
   padding-right: 5%;
 }
 
-p.question {
+p.question,
+p.submited {
   font-size: 28px;
   text-align: center;
 }

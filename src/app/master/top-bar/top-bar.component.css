@@ -49,6 +49,7 @@ p {
 }
 
 .btn {
+  width: 120px;
   display: block;
   float: right;
   margin-top: -2px;

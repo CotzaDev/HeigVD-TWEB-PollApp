@@ -27,6 +27,7 @@ export class SidebarComponent implements OnInit {
   private questions: [any];
 
   @Output() onQuestionSelect = new EventEmitter<IQuestion>();
+  @Output() onGroupSelect = new EventEmitter<string>();
 
   // TypeScript public modifiers
   constructor(
@@ -44,6 +45,7 @@ export class SidebarComponent implements OnInit {
   public openGroup(index: number) {
     this.selectedGroup = index;
     this.questions = this.masterService.questions[index].questions;
+    this.onGroupSelect.emit(this.masterService.questions[index]._id);
   }
 
   public back() {

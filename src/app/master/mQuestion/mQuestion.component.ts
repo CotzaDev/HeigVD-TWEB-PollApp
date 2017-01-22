@@ -2,7 +2,8 @@ import { Component, Input } from '@angular/core';
 import { OnInit } from '@angular/core';
 
 import { AppState } from '../../app.service';
-import { IQuestion } from '../questions';
+import { MQuestionService } from './mQuestion.service';
+import { IQuestion, SendPayload } from '../questions';
 
 @Component({
   // The selector is what angular internally uses
@@ -11,6 +12,7 @@ import { IQuestion } from '../questions';
   selector: 'mQuestion',  // <home></home>
   // We need to tell Angular's Dependency Injection which providers are in our app.
   providers: [
+    MQuestionService
   ],
   // Our list of styles in our component. We may add more to compose many styles together
   styleUrls: [ './mQuestion.component.css' ],
@@ -22,16 +24,27 @@ export class MQuestionComponent implements OnInit {
   public localState = { value: '' };
 
   @Input() question: IQuestion;
+  @Input() groupID: string;
 
   // TypeScript public modifiers
   constructor(
     public appState: AppState,
+    public mQuestionSerice: MQuestionService
   ) {
   }
 
   public ngOnInit() {
     console.log('hello `Question` component');
     // this.title.getData().subscribe(data => this.data = data);
+  }
+
+  public submit(time: number) {
+    let payload: SendPayload = new SendPayload();
+    payload.groupID = this.groupID;
+    payload.questionID = this.question._id;
+    payload.time = time;
+
+    this.mQuestionSerice.sendQuestion(payload);
   }
 
   public submitState(value: string) {

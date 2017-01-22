@@ -1,0 +1,26 @@
+#waiting {
+  display: table;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+#waiting div {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+#waiting .logo-annimated {
+  height: 300px;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+#waiting p {
+  display: block;
+  font-size: 30px;
+  margin-top: 50px;
+  text-align: center;
+}

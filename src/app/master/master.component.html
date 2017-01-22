@@ -5,10 +5,10 @@
   <div class="main-content">
     <div class="row-fluid main">
       <div class="col-sm-4 sidebar">
-        <sidebar (onQuestionSelect)="onQuestionSelect($event)"></sidebar>
+        <sidebar (onQuestionSelect)="onQuestionSelect($event)" (onGroupSelect)="onGroupSelect($event)"></sidebar>
       </div>
     	<div class="col-sm-8 question">
-    	  <mQuestion [question]="currentQuestion"></mQuestion>
+    	  <mQuestion [question]="currentQuestion" [groupID]="currentGroupID"></mQuestion>
     	</div>
     </div>
   </div>
