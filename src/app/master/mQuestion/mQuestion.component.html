@@ -1,6 +1,12 @@
 <div class="container-fluid" *ngIf="question">
 	<div class = "top">
-		<div class="col-sm-6"></div>
+		<div class="col-sm-6">
+			<div class="onoffswitch">
+		    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" [(ngModel)]="question.multi_answers" (click)="updateQuestion()">
+		    <label class="onoffswitch-label" for="myonoffswitch"></label>
+			</div>
+			<p class="onoffinfo">Multiple choices</p>
+		</div>
 			<div class="col-sm-6">
 			<div class="dropdown" dropdown>
 			  <button id="btn btn-primary dropdown-toggle" type="button" class="btn green btn-primary" dropdownToggle>

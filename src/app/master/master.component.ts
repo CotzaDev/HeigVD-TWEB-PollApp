@@ -27,12 +27,14 @@ export class MasterComponent implements OnInit {
   private questions: [IGroup];
   public currentQuestion: IQuestion;
   public currentGroupID: string;
+  public roomStatus: Boolean;
 
   // TypeScript public modifiers
   constructor(
     public appState: AppState,
     private masterService: MasterService,
   ) {
+    this.roomStatus = false;
   }
 
   public ngOnInit() {
@@ -46,6 +48,10 @@ export class MasterComponent implements OnInit {
     console.log('submitState', value);
     this.appState.set('value', value);
     this.localState.value = '';
+  }
+
+  onRoomSubmit(value: Boolean) {
+    this.roomStatus = value;
   }
 
   onQuestionSelect(question: IQuestion) {

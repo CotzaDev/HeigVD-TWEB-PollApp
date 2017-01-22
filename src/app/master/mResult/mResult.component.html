@@ -1,0 +1,26 @@
+<div class="container-fluid">
+  <div class="top">
+    <div class="col-sm-12">
+      <button type="submit" class="btn btn-primary red digit">Stop</button>
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div>
+      <p class="question">{{question.question}}</p>
+    </div>
+    <div class="answers">
+      <table>
+        <tbody>
+          <tr *ngFor="let answer of question.answers; let i = index">
+            <div class="answer selected correct" [class.correct]="answer.isCorrect" [class.incorrect]="!answer.isCorrect">
+              <td class="text">{{answer.answer}}</td>
+              <td class="percent">{{calcPercent(i) + ' %'}}</td>
+              <div class="progress-bar" [style.width]="calcPercent(i) + '%'"></div>
+            </div>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="answer-count">{{totalAnswers}} answers</p>
+  </div>
+</div>

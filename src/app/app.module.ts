@@ -24,6 +24,7 @@ import { UResultComponent } from './poll/uResult';
 import { MasterComponent } from './master';
 import { TopBarComponent } from './master/top-bar';
 import { SidebarComponent } from './master/sidebar';
+import { MResultComponent } from './master/mResult';
 import { MQuestionComponent } from './master/mQuestion';
 import { NoContentComponent } from './no-content';
 import { ROUTES } from './app.routes';
@@ -55,6 +56,7 @@ const APP_PROVIDERS = [
     MasterComponent,
     TopBarComponent,
     SidebarComponent,
+    MResultComponent,
 	  MQuestionComponent,
     NoContentComponent,
     XLargeDirective,

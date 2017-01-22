@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { OnInit } from '@angular/core';
 
 import { AppState } from '../../app.service';
@@ -29,6 +29,8 @@ export class MQuestionComponent implements OnInit {
 
   @Input() question: IQuestion;
   @Input() groupID: string;
+
+  @Output() onRoomSubmit = new EventEmitter<Boolean>();
 
   // TypeScript public modifiers
   constructor(
@@ -82,8 +84,7 @@ export class MQuestionComponent implements OnInit {
   }
 
   public saveToggle(index: number) {
-    console.log(index);
-    if(!this.question.answers[index].isCorrect) {
+    if(!this.question.answers[index].isCorrect && !this.question.multi_answers) {
       for(let i: number = 0; i < this.question.answers.length; i++) {
         if(i != index && this.question.answers[i].isCorrect) {
           this.question.answers[i].isCorrect = false;
@@ -91,6 +92,9 @@ export class MQuestionComponent implements OnInit {
           this.mQuestionSerice.updateAnswer(this.question.answers, this.groupID, this.question._id, i);
         }
       }
+    }
+    
+    if (!this.question.answers[index].isCorrect){
       this.question.answers[index].isCorrect = true;
     }
     else {
@@ -106,6 +110,7 @@ export class MQuestionComponent implements OnInit {
     payload.time = time;
 
     this.mQuestionSerice.sendQuestion(payload);
+    this.onRoomSubmit.emit(true);
   }
 
   public submitState(value: string) {
@@ -117,5 +122,9 @@ export class MQuestionComponent implements OnInit {
   public remove(index: number) {
     this.clickAllowed = false;
     this.mQuestionSerice.removeAnswer(this.question.answers, this.groupID, this.question._id, index);
+  }
+
+  public updateQuestion() {
+    this.mQuestionSerice.updateQuestion(this.question, this.groupID);
   }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IO } from '../../app.service';
-import { SendPayload, IAnswer } from '../questions';
+import { SendPayload, IAnswer, IQuestion } from '../questions';
 import { Headers, Http, Response } from '@angular/http';
 import { SessionStorage } from 'ng2-webstorage';
 
@@ -37,6 +37,13 @@ export class MQuestionService {
     this.http.get('api/group/' + gID + '/question/' + qID + '/answer/' + answers[index]._id + '/remove', {headers: this.getAuthHeaders()})
      .toPromise()
      .then(() => answers.splice(index, 1))
+     .catch(this.handleError);
+  }
+
+  public updateQuestion(question: IQuestion, gID: string) {
+    this.http.post('api/group/' + gID + '/question/' + question._id + '/update', {question: question.question, multi_answers: !question.multi_answers}, {headers: this.getAuthHeaders()})
+     .toPromise()
+     .then()
      .catch(this.handleError);
   }
 

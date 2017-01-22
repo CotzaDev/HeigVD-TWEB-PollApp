@@ -57,7 +57,7 @@ export class MasterService {
     let question: IQuestion = this.questions[gIndex].questions[qIndex];
     this.http.post('api/group/' + this.questions[gIndex]._id + '/question/' + question._id + '/update', {question: question.question, multi_answers: question.multi_answers}, {headers: this.getAuthHeaders()})
      .toPromise()
-     .then((res: Response) => question._id = res.json().id)
+     .then()
      .catch(this.handleError);
   }
 

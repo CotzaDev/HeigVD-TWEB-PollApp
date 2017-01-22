@@ -94,6 +94,7 @@ export class Room {
     if(id >= 0 && this.results.answers.length >= id) {
       this.results.answers[id].nbResponse ++;
       this.results.responses ++;
+      this._admin.socket.emit('answered', id);
     }
   }
 
