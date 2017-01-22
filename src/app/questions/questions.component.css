@@ -3,6 +3,7 @@
   width: 100%;
   top: 0px;
   position: absolute;
+  margin-top:10px;
 }
 
 .timmer .progress {
@@ -23,6 +24,7 @@
 .container {
   padding-left: 5%;
   padding-right: 5%;
+  margin-top:10%;
 }
 
 p.question,
