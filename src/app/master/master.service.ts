@@ -31,6 +31,20 @@ export class MasterService {
      .catch(this.handleError);
   }
 
+  public createGroup(index: number) {
+    this.http.post('api/group/add', JSON.stringify(this.questions[index]), {headers: this.headers})
+     .toPromise()
+     .then((res: Response) => this.questions[index]._id = res.json().id)
+     .catch(this.handleError);
+  }
+
+  public removeGroup(index: number) {
+    this.http.get('api/group/' + this.questions[index]._id + '/remove', {headers: this.headers})
+     .toPromise()
+     .then(() => this.questions.splice(index, 1))
+     .catch(this.handleError);
+  }
+
   private getAuthHeaders(): Headers {
     let newHeaders: Headers = this.headers;
     newHeaders.set('Authorization', 'Bearer ' + this.token);

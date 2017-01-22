@@ -75,6 +75,11 @@ p.question {
   text-align: center;
 }
 
+.checkbox label {
+  width: 10px;
+  height: 33px;
+}
+
 .answers {
   background-color: #fff;
   border: 1px solid #cfd8dc;

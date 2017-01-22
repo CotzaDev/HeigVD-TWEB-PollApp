@@ -19,6 +19,11 @@ export class Group {
     return this.userModel.save();
   }
 
+  public remove(): Promise<any> {
+    this.model.remove();
+    return this.userModel.save();
+  }
+
   public addQuestion(data: IQuestion): Promise<Question> {
     let index = this.model.questions.push({} as IQuestion);
     index--;

@@ -28,14 +28,14 @@
 						<td class="controls">
 							<div class="checkbox">
 								<input id="correct" type="checkbox" value="" [(ngModel)]="answer.isCorrect">
-								<label for="correct"></label>
+								<label for="correct" tooltip="Set this as the right answer" placement="bottom"></label>
 							</div>
-							<i class="fa fa-trash"></i>
+							<i class="fa fa-trash" tooltip="Delete" placement="bottom"></i>
 						</td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
-  <button type="button" class="btn green round btn-primary">+</button>
+  <button type="button" class="btn green round btn-primary" tooltip="Add an answer" placement="bottom">+</button>
 </div>

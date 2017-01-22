@@ -69,6 +69,10 @@ nav {
   right: 0;
 }
 
+.btn {
+  outline: none !important;
+}
+
 .btn.green {
   background-color: #4caf50;
   border-color: #2e7d32;

@@ -12,6 +12,10 @@
   border-bottom: 1px solid #ccc;
 }
 
+[contentEditable=true]:empty:not(:focus):before{
+    content:attr(data-text)
+}
+
 .list-group-item:hover {
   background-color: #e3f2fd;
 }
@@ -69,4 +73,48 @@
 
 .back p {
   margin-left: 20px;
+}
+
+.actions {
+  margin-right: 10px;
+  float: right;
+  color: #757575;
+  display: none;
+}
+
+.actions i {
+  margin-right: 5px;
+}
+
+.editing-action {
+  float: right;
+  display: none;
+  color: #fff;
+}
+
+.list-group-item:hover .actions {
+  display: inline-block;
+}
+
+.list-group-item.editing:hover .actions,
+.list-group-item.editing .badge,
+.list-group-item.editing .fa-caret-right  {
+  display: none;
+}
+
+.list-group-item.editing {
+  background-color: #2196f3;
+  color: #fff;
+}
+
+.list-group-item.editing .editing-action {
+  display: inline;
+}
+
+.list-group-item:hover .fa-trash:hover {
+  color: #b71c1c;
+}
+
+.list-group-item:hover .fa-pencil:hover {
+  color: #2196f3;
 }

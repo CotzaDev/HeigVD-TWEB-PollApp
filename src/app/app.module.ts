@@ -3,7 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import { DropdownModule } from 'ng2-bootstrap';
+import { DropdownModule } from 'ng2-bootstrap/dropdown';
+import { TooltipModule } from 'ng2-bootstrap/tooltip';
 import { Ng2Webstorage } from 'ng2-webstorage';
 
 /*
@@ -27,6 +28,7 @@ import { MQuestionComponent } from './master/mQuestion';
 import { NoContentComponent } from './no-content';
 import { ROUTES } from './app.routes';
 import { XLargeDirective } from './poll/home/x-large';
+import { ContentEditableDirective } from './contenteditable.directive';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -56,6 +58,7 @@ const APP_PROVIDERS = [
 	  MQuestionComponent,
     NoContentComponent,
     XLargeDirective,
+    ContentEditableDirective
   ],
   imports: [ // import Angular's modules
     BrowserModule,
@@ -63,6 +66,7 @@ const APP_PROVIDERS = [
     HttpModule,
     RouterModule.forRoot(ROUTES, { useHash: true }),
     DropdownModule.forRoot(),
+    TooltipModule.forRoot(),
     Ng2Webstorage
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
