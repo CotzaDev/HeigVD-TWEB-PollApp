@@ -17,6 +17,11 @@ export class Answer {
     return this.userModel.save();
   }
 
+  public remove(): Promise<any> {
+    this.model.remove();
+    return this.save();
+  }
+
   get id(): string {
     return this.model.id;
   }

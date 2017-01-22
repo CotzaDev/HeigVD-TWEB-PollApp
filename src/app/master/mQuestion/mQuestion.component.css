@@ -107,16 +107,24 @@ td {
 td.controls {
   font-size: 25px;
   text-align: right;
-  width: 120px;
+  width: 140px;
   border-left: 1px solid #ccc;
 }
 
-td.controls i:hover {
+td.controls .fa-trash:hover {
   color: #b71c1c;
 }
 
+td.controls .fa-pencil {
+  margin-right: 5px;
+}
+
+td.controls .fa-pencil:hover {
+  color: #2196f3;
+}
+
 td.controls .checkbox {
-  margin-right: 45px;
+  margin-right: 70px;
 }
 
 tr:last-child {
@@ -128,4 +136,38 @@ tr:last-child {
   margin-right: auto;
   margin-top: 20px;
   display: block;
+}
+
+.ctrl-edit {
+  display: none;
+}
+
+tr.editing td {
+  background-color: #2196f3;
+  color: #fff;
+}
+
+tr.editing .ctrl-edit {
+  display: block;
+}
+
+tr.editing td.controls .checkbox,
+tr.editing td.controls .ctrl {
+  display: none;
+}
+
+tr.editing td.controls .fa-check {
+  margin-right: 28px;
+}
+
+tr.editing td.controls .fa-ckeck:hover {
+  color: #fff;
+}
+
+[contentEditable=true]:empty:not(:focus):before{
+    content:attr(data-text)
+}
+
+.checkbox input[type="checkbox"]:disabled + label, .checkbox input[type="radio"]:disabled + label {
+  opacity: 1;
 }

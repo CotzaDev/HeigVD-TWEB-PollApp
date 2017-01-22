@@ -32,7 +32,7 @@ export class MasterService {
   }
 
   public createGroup(index: number) {
-    this.http.post('api/group/add', {name: this.questions[index].name}, {headers: this.headers})
+    this.http.post('api/group/add', {name: this.questions[index].name}, {headers: this.getAuthHeaders()})
      .toPromise()
      .then((res: Response) => this.questions[index]._id = res.json().id)
      .catch(this.handleError);
@@ -40,14 +40,14 @@ export class MasterService {
 
   public createQuestion(gIndex: number, qIndex: number) {
     let question: IQuestion = this.questions[gIndex].questions[qIndex];
-    this.http.post('api/group/' + this.questions[gIndex]._id + '/question/add', {question: question.question, multi_answers: question.multi_answers}, {headers: this.headers})
+    this.http.post('api/group/' + this.questions[gIndex]._id + '/question/add', {question: question.question, multi_answers: question.multi_answers}, {headers: this.getAuthHeaders()})
      .toPromise()
      .then((res: Response) => question._id = res.json().id)
      .catch(this.handleError);
   }
 
   public updateGroup(index: number) {
-    this.http.post('api/group/' + this.questions[index]._id + '/update', {name: this.questions[index].name}, {headers: this.headers})
+    this.http.post('api/group/' + this.questions[index]._id + '/update', {name: this.questions[index].name}, {headers: this.getAuthHeaders()})
      .toPromise()
      .then()
      .catch(this.handleError);
@@ -55,21 +55,21 @@ export class MasterService {
 
   public updateQuestion(gIndex: number, qIndex: number) {
     let question: IQuestion = this.questions[gIndex].questions[qIndex];
-    this.http.post('api/group/' + this.questions[gIndex]._id + '/question/' + question._id + '/update', {question: question.question, multi_answers: question.multi_answers}, {headers: this.headers})
+    this.http.post('api/group/' + this.questions[gIndex]._id + '/question/' + question._id + '/update', {question: question.question, multi_answers: question.multi_answers}, {headers: this.getAuthHeaders()})
      .toPromise()
      .then((res: Response) => question._id = res.json().id)
      .catch(this.handleError);
   }
 
   public removeGroup(index: number) {
-    this.http.get('api/group/' + this.questions[index]._id + '/remove', {headers: this.headers})
+    this.http.get('api/group/' + this.questions[index]._id + '/remove', {headers: this.getAuthHeaders()})
      .toPromise()
      .then(() => this.questions.splice(index, 1))
      .catch(this.handleError);
   }
 
   public removeQuestion(gIndex: number, qIndex: number) {
-    this.http.get('api/group/' + this.questions[gIndex]._id + '/question/' + this.questions[gIndex].questions[qIndex]._id + '/remove', {headers: this.headers})
+    this.http.get('api/group/' + this.questions[gIndex]._id + '/question/' + this.questions[gIndex].questions[qIndex]._id + '/remove', {headers: this.getAuthHeaders()})
      .toPromise()
      .then(() => this.questions[gIndex].questions.splice(qIndex, 1))
      .catch(this.handleError);

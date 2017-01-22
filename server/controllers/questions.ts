@@ -25,7 +25,7 @@ export class Questions {
     let user: User = req.user;
     let group: Group = user.findGroup(req.params.id);
 
-    if(group === undefined) {
+    if(group == null) {
       return res.status(500).send("No group with this id found");
     }
 
@@ -41,7 +41,7 @@ export class Questions {
     let user: User = req.user;
     let group: Group = user.findGroup(req.params.id);
 
-    if(group === undefined) {
+    if(group == null) {
       return res.status(500).send("No group with this id found");
     }
 
@@ -55,7 +55,7 @@ export class Questions {
     let user: User = req.user;
     let group: Group = user.findGroup(req.params.id);
 
-    if(group === undefined) {
+    if(group == null) {
       return res.status(500).send("No group with this id found");
     }
 
@@ -68,12 +68,12 @@ export class Questions {
   public removeQuestion(req: express.Request, res: express.Response) {
     let user: User = req.user;
     let group: Group = user.findGroup(req.params.id_g);
-    if(group === undefined) {
+    if(group == null) {
       return res.status(500).send("No group with this id found");
     }
 
     let question: Question = group.findQuestion(req.params.id_q);
-    if(question === undefined) {
+    if(question == null) {
       return res.status(500).send("No question with this id found");
     }
 
@@ -86,12 +86,12 @@ export class Questions {
   public updateQuestion(req: express.Request, res: express.Response) {
     let user: User = req.user;
     let group: Group = user.findGroup(req.params.id_g);
-    if(group === undefined) {
+    if(group == null) {
       return res.status(500).send("No group with this id found");
     }
 
     let question: Question = group.findQuestion(req.params.id_q);
-    if(question === undefined) {
+    if(question == null) {
       return res.status(500).send("No question with this id found");
     }
 
@@ -107,12 +107,12 @@ export class Questions {
   public addAnswer(req: express.Request, res: express.Response) {
     let user: User = req.user;
     let group: Group = user.findGroup(req.params.id_g);
-    if(group === undefined) {
+    if(group == null) {
       return res.status(500).send("No group with this id found");
     }
 
     let question: Question = group.findQuestion(req.params.id_q)
-    if(question === undefined) {
+    if(question == null) {
       return res.status(500).send("No question with this id found");
     }
 
@@ -121,4 +121,54 @@ export class Questions {
       .catch(() => res.status(500).send("An error occured while saving answer")
     );
   }
+
+  public removeAnswer(req: express.Request, res: express.Response) {
+    let user: User = req.user;
+    let group: Group = user.findGroup(req.params.id_g);
+    if(group == null) {
+      return res.status(500).send("No group with this id found");
+    }
+
+    let question: Question = group.findQuestion(req.params.id_q);
+    if(question == null) {
+      return res.status(500).send("No question with this id found");
+    }
+
+    let answer: Answer = question.findAnswer(req.params.id_a);
+    if(answer == null) {
+      return res.status(500).send("No answer with this id found");
+    }
+
+    answer.remove()
+      .then(() => res.send({status: "ok"}))
+      .catch(() => res.status(500).send("An error occured while removing the answer")
+    );
+  }
+
+  public updateAnswer(req: express.Request, res: express.Response) {
+    let user: User = req.user;
+    let group: Group = user.findGroup(req.params.id_g);
+    if(group == null) {
+      return res.status(500).send("No group with this id found");
+    }
+
+    let question: Question = group.findQuestion(req.params.id_q);
+    if(question == null) {
+      return res.status(500).send("No question with this id found");
+    }
+
+    let answer: Answer = question.findAnswer(req.params.id_a);
+    if(answer == null) {
+      return res.status(500).send("No answer with this id found");
+    }
+
+    answer.answer = req.body.answer;
+    answer.isCorrect = req.body.isCorrect;
+
+    answer.save()
+      .then(() => res.send({status: "ok"}))
+      .catch(() => res.status(500).send("An error occured while updating the answer")
+    );
+  }
+
 }

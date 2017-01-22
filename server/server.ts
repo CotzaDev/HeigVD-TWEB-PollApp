@@ -74,7 +74,8 @@ export class Server {
         this.app.get('/api/group/:id_g/question/:id_q/remove', passport.authenticate('jwt', { session: false}), questions.removeQuestion);
         this.app.post('/api/group/:id_g/question/:id_q/update', passport.authenticate('jwt', { session: false}), questions.updateQuestion);
         this.app.post('/api/group/:id_g/question/:id_q/answer/add', passport.authenticate('jwt', { session: false}), questions.addAnswer);
-
+        this.app.get('/api/group/:id_g/question/:id_q/answer/:id_a/remove', passport.authenticate('jwt', { session: false}), questions.removeAnswer);
+        this.app.post('/api/group/:id_g/question/:id_q/answer/:id_a/update', passport.authenticate('jwt', { session: false}), questions.updateAnswer);
     }
 
     public startServer() {

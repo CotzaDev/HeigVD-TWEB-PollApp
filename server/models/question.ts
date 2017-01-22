@@ -24,6 +24,11 @@ export class Question {
     return this.save();
   }
 
+  public findAnswer(id: string): Answer {
+    let model: IAnswerModel = this.model.answers.id(id);
+    return new Answer(this.user, model);
+  }
+
   public addAnswer(data: IAnswer): Promise<Answer> {
     let index = this.model.answers.push({} as IAnswer);
     index--;

@@ -23,19 +23,25 @@
     <div class="answers">
       <table>
         <tbody>
-          <tr *ngFor="let answer of question.answers; let i = index">
-            <td>{{answer.answer}}</td>
+          <tr *ngFor="let answer of question.answers; let i = index" [class.editing]="i == editing">
+            <td><span class="edit" data-text="New Answer" [attr.contenteditable]="i == editing" [(contenteditableModel)]="question.answers[i].answer"></span></td>
 						<td class="controls">
 							<div class="checkbox">
-								<input id="correct" type="checkbox" value="" [(ngModel)]="answer.isCorrect">
-								<label for="correct" tooltip="Set this as the right answer" placement="bottom"></label>
+								<input id="correct" type="checkbox" value="" disabled [(ngModel)]="answer.isCorrect">
+								<label for="correct" (click)="saveToggle(i)" tooltip="Set this as the right answer" placement="bottom"></label>
 							</div>
-							<i class="fa fa-trash" tooltip="Delete" placement="bottom"></i>
+							<div class="ctrl">
+								<i class="fa fa-pencil" (click)="edit(i)"></i>
+								<i class="fa fa-trash" (click)="remove(i)"></i>
+							</div>
+							<div class="ctrl-edit">
+								<i class="fa fa-check" (click)="save()"></i>
+							</div>
 						</td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
-  <button type="button" class="btn green round btn-primary" tooltip="Add an answer" placement="bottom">+</button>
+  <button type="button" class="btn green round btn-primary" tooltip="Add an answer" placement="bottom" (click)="add()">+</button>
 </div>
