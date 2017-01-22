@@ -32,9 +32,16 @@ export class MasterService {
   }
 
   public createGroup(index: number) {
-    this.http.post('api/group/add', JSON.stringify(this.questions[index]), {headers: this.headers})
+    this.http.post('api/group/add', {name: this.questions[index].name}, {headers: this.headers})
      .toPromise()
      .then((res: Response) => this.questions[index]._id = res.json().id)
+     .catch(this.handleError);
+  }
+
+  public updateGroup(index: number) {
+    this.http.post('api/group/' + this.questions[index]._id + '/update', {name: this.questions[index].name}, {headers: this.headers})
+     .toPromise()
+     .then()
      .catch(this.handleError);
   }
 

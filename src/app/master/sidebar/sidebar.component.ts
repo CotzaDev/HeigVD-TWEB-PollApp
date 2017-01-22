@@ -90,13 +90,24 @@ export class SidebarComponent implements OnInit {
   public save() {
     this.clickAllowed = false;
 
-    if(this.masterService.questions[this.editing].name == "" && this.backupEntry == "") {
-      this.masterService.questions.splice(this.editing, 1);
+    // Empty name
+    if(this.masterService.questions[this.editing].name == "") {
+      if(this.backupEntry == "") {
+        this.masterService.questions.splice(this.editing, 1);
+      }
+      else {
+        this.masterService.questions[this.editing].name = this.backupEntry;
+      }
+      return;
     }
 
     // new one
     if(this.masterService.questions[this.editing]._id.length == 0) {
       this.masterService.createGroup(this.editing);
+    }
+    // update
+    else {
+      this.masterService.updateGroup(this.editing);
     }
 
     this.editing = -1;

@@ -21,6 +21,22 @@ export class Questions {
     );
   }
 
+  public updateGroup(req: express.Request, res: express.Response) {
+    let user: User = req.user;
+    let group: Group = user.findGroup(req.params.id);
+
+    if(group === undefined) {
+      return res.status(500).send("No group with this id found");
+    }
+
+    group.name = req.body.name;
+
+    group.save()
+      .then(() => res.send({status: "ok"}))
+      .catch(() => res.status(500).send("An error occured while updating group")
+    );
+  }
+
   public removeGroup(req: express.Request, res: express.Response) {
     let user: User = req.user;
     let group: Group = user.findGroup(req.params.id);
