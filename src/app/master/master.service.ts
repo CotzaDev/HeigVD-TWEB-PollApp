@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
 import { SessionStorage } from 'ng2-webstorage';
-import { IGroup } from './questions';
+import { IGroup, IQuestion } from './questions';
 
 @Injectable()
 export class MasterService {
@@ -38,6 +38,14 @@ export class MasterService {
      .catch(this.handleError);
   }
 
+  public createQuestion(gIndex: number, qIndex: number) {
+    let question: IQuestion = this.questions[gIndex].questions[qIndex];
+    this.http.post('api/group/' + this.questions[gIndex]._id + '/question/add', {question: question.question, multi_answers: question.multi_answers}, {headers: this.headers})
+     .toPromise()
+     .then((res: Response) => question._id = res.json().id)
+     .catch(this.handleError);
+  }
+
   public updateGroup(index: number) {
     this.http.post('api/group/' + this.questions[index]._id + '/update', {name: this.questions[index].name}, {headers: this.headers})
      .toPromise()
@@ -45,10 +53,25 @@ export class MasterService {
      .catch(this.handleError);
   }
 
+  public updateQuestion(gIndex: number, qIndex: number) {
+    let question: IQuestion = this.questions[gIndex].questions[qIndex];
+    this.http.post('api/group/' + this.questions[gIndex]._id + '/question/' + question._id + '/update', {question: question.question, multi_answers: question.multi_answers}, {headers: this.headers})
+     .toPromise()
+     .then((res: Response) => question._id = res.json().id)
+     .catch(this.handleError);
+  }
+
   public removeGroup(index: number) {
     this.http.get('api/group/' + this.questions[index]._id + '/remove', {headers: this.headers})
      .toPromise()
      .then(() => this.questions.splice(index, 1))
+     .catch(this.handleError);
+  }
+
+  public removeQuestion(gIndex: number, qIndex: number) {
+    this.http.get('api/group/' + this.questions[gIndex]._id + '/question/' + this.questions[gIndex].questions[qIndex]._id + '/remove', {headers: this.headers})
+     .toPromise()
+     .then(() => this.questions[gIndex].questions.splice(qIndex, 1))
      .catch(this.handleError);
   }
 

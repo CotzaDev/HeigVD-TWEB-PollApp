@@ -3,7 +3,7 @@ import { OnInit } from '@angular/core';
 
 import { AppState } from '../../app.service';
 import { MasterService } from '../master.service';
-import { IQuestion, IGroup } from '../questions';
+import { IQuestion, IGroup} from '../questions';
 
 @Component({
   // The selector is what angular internally uses
@@ -24,7 +24,7 @@ export class SidebarComponent implements OnInit {
   public localState = { value: '' };
   private selectedGroup: number;
   private selectedQuestion: number;
-  private questions: [any];
+  private questions: Array<IQuestion>;
   public editing: number;
   private clickAllowed: Boolean;
   public backupEntry: string;
@@ -52,7 +52,7 @@ export class SidebarComponent implements OnInit {
       return;
 
     if(this.editing != -1) {
-      this.save();
+      this.saveGroup();
     }
 
     if(!this.clickAllowed) {
@@ -71,23 +71,46 @@ export class SidebarComponent implements OnInit {
     this.editing = this.masterService.questions.length - 1;
   }
 
+  public addQuestion() {
+    this.masterService.questions[this.selectedGroup].questions.push({_id: "", question: "", multi_answers: false, answers: []} as IQuestion);
+    this.backupEntry = "";
+    this.editing = this.masterService.questions[this.selectedGroup].questions.length - 1;
+  }
+
   public back() {
     this.selectedGroup = -1;
   }
 
   public selectQuestion(index: number) {
+    if(this.editing == index)
+      return;
+
+    if(this.editing != -1) {
+      this.saveQuestion();
+    }
+
+    if(!this.clickAllowed) {
+      this.clickAllowed = true;
+      return;
+    }
+
     this.selectedQuestion = index;
     let question = this.masterService.questions[this.selectedGroup].questions[index];
     this.onQuestionSelect.emit(question);
     console.log(question);
   }
 
-  public edit(index: number) {
-    this.backupEntry = this.masterService.questions[index].name
+  public editGroup(index: number) {
+    this.backupEntry = this.masterService.questions[index].name;
     this.editing = index;
   }
 
-  public save() {
+  public editQuestion(index: number) {
+    this.backupEntry = this.masterService.questions[this.selectedGroup].questions[index].question;
+    this.editing = index;
+  }
+
+  public saveGroup() {
     this.clickAllowed = false;
 
     // Empty name
@@ -113,9 +136,40 @@ export class SidebarComponent implements OnInit {
     this.editing = -1;
   }
 
-  public remove(index: number) {
+  public saveQuestion() {
+    this.clickAllowed = false;
+
+    // Empty name
+    if(this.masterService.questions[this.selectedGroup].questions[this.editing].question == "") {
+      if(this.backupEntry == "") {
+        this.masterService.questions[this.selectedGroup].questions.splice(this.editing, 1);
+      }
+      else {
+        this.masterService.questions[this.selectedGroup].questions[this.editing].question = this.backupEntry;
+      }
+      return;
+    }
+
+    // new one
+    if(this.masterService.questions[this.selectedGroup].questions[this.editing]._id.length == 0) {
+      this.masterService.createQuestion(this.selectedGroup, this.editing);
+    }
+    // update
+    else {
+      this.masterService.updateQuestion(this.selectedGroup, this.editing);
+    }
+
+    this.editing = -1;
+  }
+
+  public removeGroup(index: number) {
     this.clickAllowed = false;
     this.masterService.removeGroup(index);
+  }
+
+  public removeQuestion(index: number) {
+    this.clickAllowed = false;
+    this.masterService.removeQuestion(this.selectedGroup, index);
   }
 
   public submitState(value: string) {

@@ -19,6 +19,11 @@ export class Question {
     return this.userModel.save();
   }
 
+  public remove(): Promise<any> {
+    this.model.remove();
+    return this.save();
+  }
+
   public addAnswer(data: IAnswer): Promise<Answer> {
     let index = this.model.answers.push({} as IAnswer);
     index--;
