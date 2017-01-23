@@ -54,11 +54,16 @@ export class Server {
           socket.on('sendQuestion', rm.onQuestion.bind(rm, socket));
           socket.on('sendAnswer', rm.onAnswer.bind(rm, socket));
           socket.on('sendMAnswer', rm.onMAnswer.bind(rm, socket));
+          socket.on('questionExit', rm.onQuestionExit.bind(rm, socket));
+          socket.on('questionStop', rm.onQuestionStop.bind(rm, socket));
 
           console.log('a user connected ' + socket.id);
-        });
 
-        this.io.on('disconnect', auth.onDisconnect);
+          socket.on('disconnect', () => {
+            auth.onDisconnect(socket, rm);
+            rm.onDisconnect(socket);
+          });
+        });
     }
 
     public setRoutes() {

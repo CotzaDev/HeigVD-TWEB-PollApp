@@ -69,12 +69,14 @@ export class Room {
   private _question: ActiveQuestion;
   public results: Results;
   private timer: any;
+  public users: Set<string>;
 
   constructor(io: SocketIO.Server, admin: User, list: Map<string, Room>) {
     this.io = io;
     this._admin = admin;
     this.nbConnected = 0;
     this._id = this.generateID(list);
+    this.users = new Set<string>();
   }
 
   private generateID(list: Map<string, Room>): string {
@@ -103,6 +105,29 @@ export class Room {
   public sendResults() {
     clearInterval(this.timer);
     this.io.to(this.id).emit('results', this.results);
+  }
+
+  public clearClients() {
+    this.io.to(this.id).emit('clear');
+    clearInterval(this.timer);
+  }
+
+  public addUser(id: string) {
+    this.users.add(id);
+    this.nbConnected ++;
+  }
+
+  public removeUser(id: string) {
+    this.users.delete(id);
+    this.nbConnected --;
+  }
+
+  public close() {
+    this.io.to(this.id).emit('closed');
+  }
+
+  public stopQuestion() {
+    this.sendResults();
   }
 
   get id(): string {

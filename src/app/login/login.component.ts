@@ -25,7 +25,8 @@ export class LoginComponent implements OnInit {
   public localState = { value: '' };
   private rUser: RUser;
   private cred: Credentials;
-  public error = '';
+  public confPsw: string;
+  public error: string = '';
 
 
   // TypeScript public modifiers
@@ -44,15 +45,43 @@ export class LoginComponent implements OnInit {
   }
 
   public rSubmit() {
+    this.error = "";
+    let emailRe: RegExp = /\S+@\S+\.\S+/;
+
+    if(this.rUser.username.length < 4)
+      this.error += "Username must have at least 4 caracters. ";
+    if(this.rUser.password.length < 6)
+      this.error += "Password must have at least 6 digits. ";
+    if(!emailRe.test(this.rUser.email))
+      this.error += "Email is not valid. ";
+    if(this.rUser.password != this.confPsw)
+      this.error += "The two passwords doesn't match. ";
+
+    if(this.error != '')
+      return;
+
     this.loginService.register(this.rUser).then(() => {
-      this.router.navigate(['/question']);
+      this.router.navigate(['/master']);
+    })
+    .catch((err) => {
+      if(err == 422)
+        this.error = "This username or email is not available";
+      else
+        this.error = "The server returnrd an error during login";
     });
 
   }
 
   public lSubmit() {
+    this.error = "";
     this.loginService.login(this.cred).then(() => {
       this.router.navigate(['/master']);
+    })
+    .catch((err) => {
+      if(err == 401)
+        this.error = "Wrong credentials";
+      else
+        this.error = "The server returnrd an error during login";
     });
 
   }

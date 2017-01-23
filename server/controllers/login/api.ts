@@ -3,6 +3,7 @@
 import * as express from "express";
 import { User } from '../../models/user';
 import * as jwt from 'jsonwebtoken';
+import { RoomManager } from '../rooms';
 
 var jwtKey = "Ag93Y6jPRZQ2nAY94GcnNuh";
 
@@ -94,9 +95,14 @@ export class SocketAuth {
     });
   }
 
-  public onDisconnect(socket: SocketIO.Socket) {
+  public onDisconnect(socket: SocketIO.Socket, rm: RoomManager) {
     if(!this.isAuthentificated(socket))
       return;
+
+    let user: User = this.authentificated.get(socket.id);
+    if(user.room != null) {
+      rm.close(user.room);
+    }
 
     this.authentificated.delete(socket.id);
   }

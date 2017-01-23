@@ -37,6 +37,7 @@ export class RoomManager {
     let user: User = this.auth.getUser(socket);
 
     this.listByID.delete(user.room.id);
+    user.room.close();
     user.room = null;
 
     socket.emit('closed');
@@ -46,7 +47,7 @@ export class RoomManager {
     if(this.listByID.has(roomID)) {
       let room: Room = this.listByID.get(roomID);
       this.listByConnection.set(socket.id, room);
-      room.nbConnected ++;
+      room.addUser(socket.id);
 
       socket.join(room.id);
       socket.emit('room200');
@@ -76,5 +77,31 @@ export class RoomManager {
         room.addAnswer(i);
       }
     }
+  }
+
+  public onQuestionExit(socket: SocketIO.Socket) {
+    let user: User = this.auth.getUser(socket);
+    user.room.clearClients();
+  }
+
+  public onQuestionStop(socket: SocketIO.Socket) {
+    let user: User = this.auth.getUser(socket);
+    user.room.stopQuestion();
+  }
+
+  public onDisconnect(socket: SocketIO.Socket) {
+    if(this.listByConnection.has(socket.id)) {
+      let room: Room = this.listByConnection.get(socket.id);
+      room.removeUser(socket.id);
+      this.listByConnection.delete(socket.id);
+    }
+  }
+
+  public close(room: Room) {
+    room.close();
+    room.users.forEach((user: string) => {
+      this.listByConnection.delete(user);
+    });
+    this.listByID.delete(room.id);
   }
 }

@@ -13,7 +13,7 @@
     </div>
     <div *ngIf="topBarService.roomID != ''" class="col-xs-2 hidable">
       <i class="fa fa-clock-o"></i>
-      <p>01:56</p>
+      <p>{{timeString}}</p>
     </div>
     <div *ngIf="topBarService.roomID == ''" class="col-xs-6 hidable" ></div>
     <div class="col-xs-5">

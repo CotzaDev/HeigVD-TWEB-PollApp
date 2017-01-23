@@ -12,4 +12,9 @@ export class MResultService {
     this.io.socket.on('answered', (index: number) => this.answerSource.next(index));
   }
 
+  sendStop(): void {
+    this.io.socket.emit('questionStop');
+  }
+
+
 }

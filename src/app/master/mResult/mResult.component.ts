@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { MResultService } from './mResult.service';
+import { Observable } from "rxjs/Rx";
 
 import { AppState } from '../../app.service';
 import { IQuestion } from '../questions';
@@ -27,7 +28,9 @@ export class MResultComponent implements OnInit {
   public hasCorrect: Boolean;
   public totalAnswers: number;
   public answers: Array<number>;
+  public finished: Boolean;
 
+  @Output() onTimerUpdate = new EventEmitter<number>();
   private answerSubscription: Subscription;
 
   // TypeScript public modifiers
@@ -38,6 +41,7 @@ export class MResultComponent implements OnInit {
     this.totalAnswers = 0;
     this.hasCorrect = false;
     this.answers = new Array<number>();
+    this.finished = false;
   }
 
   public ngOnInit() {
@@ -61,6 +65,28 @@ export class MResultComponent implements OnInit {
 
     result = Math.round((this.answers[index] / this.totalAnswers) * 100);
     return result;
+  }
+
+  public stop(): void {
+    this.mResultService.sendStop();
+    this.finished = true;
+  }
+
+  public timerUpdate(tot: number, i: number) {
+    if(this.finished) {
+      this.onTimerUpdate.emit(0);
+      return;
+    }
+
+    this.onTimerUpdate.emit(tot - i);
+
+    if(tot - i == 0) {
+      this.finished = true;
+    }
+  }
+
+  @Input() set time(value: number) {
+    Observable.timer(0, 1000).take(value + 1).subscribe(i => this.timerUpdate(value, i));
   }
 
   @Input() set question(value: IQuestion) {

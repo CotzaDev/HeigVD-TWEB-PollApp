@@ -30,7 +30,7 @@ export class MQuestionComponent implements OnInit {
   @Input() question: IQuestion;
   @Input() groupID: string;
 
-  @Output() onRoomSubmit = new EventEmitter<Boolean>();
+  @Output() onRoomSubmit = new EventEmitter<number>();
 
   // TypeScript public modifiers
   constructor(
@@ -93,7 +93,7 @@ export class MQuestionComponent implements OnInit {
         }
       }
     }
-    
+
     if (!this.question.answers[index].isCorrect){
       this.question.answers[index].isCorrect = true;
     }
@@ -110,7 +110,7 @@ export class MQuestionComponent implements OnInit {
     payload.time = time;
 
     this.mQuestionSerice.sendQuestion(payload);
-    this.onRoomSubmit.emit(true);
+    this.onRoomSubmit.emit(time);
   }
 
   public submitState(value: string) {

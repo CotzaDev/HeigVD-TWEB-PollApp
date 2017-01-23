@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="top">
     <div class="col-sm-12">
-      <button type="submit" class="btn btn-primary red digit">Stop</button>
+      <button *ngIf="!finished" type="submit" class="btn btn-primary red digit" (click)="stop()">Stop</button>
     </div>
   </div>
   <div class="row-fluid">

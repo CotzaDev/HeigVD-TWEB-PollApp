@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { OnInit } from '@angular/core';
 
 import { AppState } from '../../app.service';
@@ -22,11 +22,14 @@ export class TopBarComponent implements OnInit {
   // Set our default values
   public localState = { value: '' };
 
+  public timeString: string;
+
   // TypeScript public modifiers
   constructor(
     public appState: AppState,
     private topBarService: TopBarService,
   ) {
+    this.timeString = '0:0';
   }
 
   public ngOnInit() {
@@ -40,6 +43,16 @@ export class TopBarComponent implements OnInit {
 
   public closeRoom(): void {
     this.topBarService.reqCloseRoom();
+  }
+
+  @Input() set timer(value: number) {
+    if(isNaN(value))
+      return;
+      
+    let min: number = Math.floor(value / 60);
+    let sec: number = value - min * 60;
+
+    this.timeString = min + ':' + sec;
   }
 
   public submitState(value: string) {

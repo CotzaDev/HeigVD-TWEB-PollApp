@@ -5,7 +5,9 @@ import { OnInit } from '@angular/core';
 import { AppState } from '../app.service';
 import { MasterService } from './master.service';
 
-import { IGroup, IQuestion } from './questions';
+import { IQuestion } from './questions';
+
+enum Status { NONE, RUNNING, FINISHED };
 
 @Component({
   // The selector is what angular internally uses
@@ -24,24 +26,24 @@ import { IGroup, IQuestion } from './questions';
 export class MasterComponent implements OnInit {
   // Set our default values
   public localState = { value: '' };
-  private questions: [IGroup];
   public currentQuestion: IQuestion;
   public currentGroupID: string;
-  public roomStatus: Boolean;
+  public questionStatus: Status;
+  public questionTime: number;
+  public timer: number;
 
   // TypeScript public modifiers
   constructor(
     public appState: AppState,
     private masterService: MasterService,
   ) {
-    this.roomStatus = false;
+    this.questionStatus = Status.NONE;
+    this.questionTime = 0;
   }
 
   public ngOnInit() {
     console.log('hello `Question` component');
     // this.title.getData().subscribe(data => this.data = data);
-    this.questions = this.masterService.questions;
-    console.log(this.questions);
   }
 
   public submitState(value: string) {
@@ -50,12 +52,22 @@ export class MasterComponent implements OnInit {
     this.localState.value = '';
   }
 
-  onRoomSubmit(value: Boolean) {
-    this.roomStatus = value;
+  onRoomSubmit(value: number) {
+    this.questionTime = value;
+    this.questionStatus = Status.RUNNING;
+  }
+
+  onTimerUpdate(value: number) {
+    this.timer = value;
   }
 
   onQuestionSelect(question: IQuestion) {
     this.currentQuestion = question;
+
+    if(this.questionStatus == Status.RUNNING) {
+      this.questionStatus = Status.NONE;
+      this.masterService.sendQuestionExit();
+    }
   }
 
   onGroupSelect(id: string) {

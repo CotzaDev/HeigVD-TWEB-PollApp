@@ -1,5 +1,8 @@
 <div class="intro">
-  <p>With a Poll App account you can create polls and submit them to your audience</p>
+  <div *ngIf="error != ''" class="alert alert-danger" role="alert">
+    <strong>Eroor :( </strong> {{error}}
+  </div>
+  <p *ngIf="error == ''">With a Poll App account you can create polls and submit them to your audience</p>
 </div>
 <div class="container-fluid">
   <div class="row-fluid">
@@ -11,15 +14,13 @@
         </div>
 		<form (ngSubmit)="lSubmit()" #f="ngForm" novalidate>
 			<div class="row" >
-			  <div class="input-group mb-2 mr-sm-2 mb-sm-0" [ngClass]="{ 'has-error': f.submitted && !cred.username.valid }">
+			  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
 				<div class="input-group-addon"><i class="fa fa-user"></i></div>
-				<input [(ngModel)]="cred.username" type="text" name= "cred.username" class="form-control" id="login-username" placeholder="Username" required>
-				<div [hidden]="cred.username.valid || cred.username.pristine " class="alert alert-danger">Enter a valid username</div>
+				<input [(ngModel)]="cred.username" type="text" name="cred.username" class="form-control" id="login-username" placeholder="Username" required>
 			  </div>
-			  <div class="input-group mb-2 mr-sm-2 mb-sm-0" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+			  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
 				<div class="input-group-addon"><i class="fa fa-key"></i></div>
-				<input [(ngModel)]="cred.password" type="password" name= "cred.password" class="form-control" id="login-password" placeholder="Password" required>
-				<div [hidden]="cred.password.valid || cred.password.pristine " class="alert alert-danger">Enter a valid password</div>
+				<input [(ngModel)]="cred.password" type="password" name="cred.password" class="form-control" id="login-password" placeholder="Password" required>
 			  </div>
 			  <div class="text-xs-center">
 				<button (click)="lSubmit()" type="submit" class="btn btn-primary green">Sign In</button>
@@ -35,19 +36,19 @@
           <div class="row">
             <div class="input-group mb-2 mr-sm-2 mb-sm-0">
               <div class="input-group-addon"><i class="fa fa-user"></i></div>
-              <input [(ngModel)]="rUser.username" type="text" class="form-control" id="register-username" placeholder="Username"  required>
+              <input [(ngModel)]="rUser.username" name="rUser.username" type="text" class="form-control" id="register-username" placeholder="Username"  required>
             </div>
             <div class="input-group mb-2 mr-sm-2 mb-sm-0">
               <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-              <input [(ngModel)]="rUser.email" type="email" class="form-control" id="register-email" placeholder="Email" required>
+              <input [(ngModel)]="rUser.email" name="rUser.email" type="email" class="form-control" id="register-email" placeholder="Email" required>
             </div>
             <div class="input-group mb-2 mr-sm-2 mb-sm-0">
               <div class="input-group-addon"><i class="fa fa-key"></i></div>
-              <input [(ngModel)]="rUser.password" type="password" class="form-control" id="register-password" placeholder="Password" required>
+              <input [(ngModel)]="rUser.password" name="rUser.password" type="password" class="form-control" id="register-password" placeholder="Password" required>
             </div>
             <div class="input-group mb-2 mr-sm-2 mb-sm-0">
               <div class="input-group-addon"><i class="fa fa-key"></i></div>
-              <input type="password" class="form-control" id="register-repeat-password" placeholder="Repeat password" required>
+              <input [(ngModel)]="confPsw" name="rUser.cpassword" type="password" class="form-control" id="register-repeat-password" placeholder="Repeat password" required>
             </div>
             <div class="text-xs-center">
               <button type="submit" class="btn btn-primary">Sign Up</button>

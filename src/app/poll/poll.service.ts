@@ -31,6 +31,8 @@ export class PollService {
       this.result = payload;
       this.status = Status.Result;
     });
+    this.io.socket.on('clear', () => this.status = Status.Waiting);
+    this.io.socket.on('closed', () => this.status = Status.Out);
   }
 
   public join(id: string) {

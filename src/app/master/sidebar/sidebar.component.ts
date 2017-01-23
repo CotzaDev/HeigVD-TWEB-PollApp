@@ -62,6 +62,7 @@ export class SidebarComponent implements OnInit {
 
     this.selectedGroup = index;
     this.questions = this.masterService.questions[index].questions;
+    console.log(this.questions);
     this.onGroupSelect.emit(this.masterService.questions[index]._id);
   }
 

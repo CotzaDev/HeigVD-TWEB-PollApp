@@ -50,7 +50,7 @@
     "server:dev": "cross-env NODE_ENV=development npm run dev webpack-dashboard -- webpack-dev-server --progress --profile --watch",
     "server:prod": "http-server dist --cors",
     "server": "npm run server:dev",
-    "start": "npm run build:prod && node server.js",
+    "start": "tsc --rootDir server && npm run build:prod && node index.js",
     "test": "cross-env NODE_ENV=testing karma start",
     "tslint": "tslint",
     "version": "npm run build",
