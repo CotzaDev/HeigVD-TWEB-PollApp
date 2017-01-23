@@ -1,0 +1,33 @@
+<div class="timmer">
+  <div class="progress" [style.width]="percent + '%'" [style.background-color]="percentColor"></div>
+  <p>{{timeLeft}}</p>
+</div>
+
+<div class="container-fluid">
+  <div *ngIf="!submited" class="row-fluid">
+    <p class="question">{{question.question}}</p>
+    <div class="answers">
+      <table>
+        <tbody>
+          <tr *ngFor="let answer of question.answers; let i = index">
+            <td (click)="toggle(i)">
+              <div class="checkbox">
+								<input id="correct" type="checkbox" value="" disabled [(ngModel)]="selection[i]">
+								<label for="correct"></label>
+							</div>
+              <span>{{answer}}</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="action">
+      <button type="submit" class="btn btn-primary green" (click)="submit()">Submit</button>
+    </div>
+  </div>
+
+  <div *ngIf="submited" class="row-fluid">
+    <p class="submited">Your answers has been sent</p>
+    <p class="submited">Waiting for results ...</p>
+  </div>
+</div>

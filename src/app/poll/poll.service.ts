@@ -19,7 +19,12 @@ export class PollService {
     this.io.socket.on('room404', () => this.notFound = true);
     this.io.socket.on('question', (payload: IActiveQuestion) => {
       this.question = payload;
-      this.status = Status.Question;
+      if(payload.multi_answers) {
+        this.status = Status.MAQuestion;
+      }
+      else {
+        this.status = Status.Question;
+      }
     });
     this.io.socket.on('results', (payload: IResults) => {
       console.log(payload);
@@ -34,5 +39,9 @@ export class PollService {
 
   public sendAnser(id: number) {
     this.io.socket.emit('sendAnswer', id);
+  }
+
+  public sendMAnser(sel: Array<Boolean>) {
+    this.io.socket.emit('sendMAnswer', sel);
   }
 }

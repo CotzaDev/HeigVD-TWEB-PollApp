@@ -1,9 +1,24 @@
-/*styles for question content only*/
+.container-fluid {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.row-fluid {
+  width: 80%;
+}
+
+@media (min-width: 1200px) {
+  .row-fluid {
+    width: 50%;
+  }
+}
+
 .timmer {
   width: 100%;
   top: 0px;
   position: absolute;
-  margin-top:10px;
 }
 
 .timmer .progress {
@@ -24,13 +39,33 @@
 .container {
   padding-left: 5%;
   padding-right: 5%;
-  margin-top:10%;
+}
+
+.checkbox {
+  margin-top: -5px;
+  margin-left: 5px;
+}
+
+td span {
+  margin-left: 25px;
+  display: block;
+  margin-top: 6px;
 }
 
 p.question,
 p.submited {
   font-size: 28px;
   text-align: center;
+}
+
+.action {
+  text-align: center;
+}
+
+.btn {
+  height: 50px;
+  width: 120px;
+  margin-top: 30px;
 }
 
 .answers {
@@ -63,4 +98,8 @@ td {
 
 tr:last-child {
   border-bottom: 0px;
+}
+
+.checkbox input[type="checkbox"]:disabled + label, .checkbox input[type="radio"]:disabled + label {
+  opacity: 1;
 }

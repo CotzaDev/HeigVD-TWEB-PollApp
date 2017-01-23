@@ -68,4 +68,13 @@ export class RoomManager {
     let room: Room = this.listByConnection.get(socket.id);
     room.addAnswer(id);
   }
+
+  public onMAnswer(socket: SocketIO.Socket, sel: Array<Boolean>) {
+    let room: Room = this.listByConnection.get(socket.id);
+    for(let i: number = 0; room.activeQuestion.multi_answers && i < sel.length && i < room.activeQuestion.answers.length; i++) {
+      if(sel[i]) {
+        room.addAnswer(i);
+      }
+    }
+  }
 }

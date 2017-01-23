@@ -8,6 +8,7 @@ export interface IQuestion {
 export interface IActiveQuestion {
   time: number,
   question: string,
+  multi_answers: Boolean,
   answers: Array<string>,
   expire: Date;
 }

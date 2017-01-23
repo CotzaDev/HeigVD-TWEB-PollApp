@@ -8,5 +8,6 @@
 </div>
 
 <question *ngIf="pollService.status == 2" [data]="pollService.question" (onUserResponse)="onUserResponse($event)"></question>
+<questions *ngIf="pollService.status == 3" [data]="pollService.question" (onUserResponse)="onUserResponse($event)"></questions>
 
 <result *ngIf="pollService.status == 4" [result]="pollService.result" [userResponse]="userResponse"></result>

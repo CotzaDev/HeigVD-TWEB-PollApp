@@ -18,7 +18,7 @@ import { AppState, IO } from './app.service';
 import { PollComponent } from './poll';
 import { HomeComponent } from './poll/home';
 import { QuestionComponent } from './poll/question';
-import { QuestionsComponent } from './questions';
+import { QuestionsComponent } from './poll/questions';
 import { LoginComponent } from './login';
 import { UResultComponent } from './poll/uResult';
 import { MasterComponent } from './master';
@@ -76,7 +76,6 @@ const APP_PROVIDERS = [
   ],
   entryComponents: [
     PollComponent,
-	  QuestionsComponent,
     LoginComponent,
     MasterComponent,
     AboutComponent,

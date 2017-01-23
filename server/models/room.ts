@@ -40,12 +40,14 @@ class Results {
 class ActiveQuestion {
   public time: number;
   public question: string;
+  public multi_answers: Boolean;
   public answers: Array<string>;
   public expire: Date;
 
   constructor(time: number, question: IQuestion) {
     this.time = time;
     this.question = question.question;
+    this.multi_answers = question.multi_answers;
 
     this.answers = new Array<string>();
     for(let answer of question.answers) {

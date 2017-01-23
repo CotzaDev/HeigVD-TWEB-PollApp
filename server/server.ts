@@ -53,6 +53,7 @@ export class Server {
           socket.on('join', rm.onJoin.bind(rm, socket));
           socket.on('sendQuestion', rm.onQuestion.bind(rm, socket));
           socket.on('sendAnswer', rm.onAnswer.bind(rm, socket));
+          socket.on('sendMAnswer', rm.onMAnswer.bind(rm, socket));
 
           console.log('a user connected ' + socket.id);
         });
