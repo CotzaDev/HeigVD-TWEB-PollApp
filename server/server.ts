@@ -38,7 +38,7 @@ export class Server {
 
         this.app.use(bodyParser.json());
 
-        this.app.use('/', express.static('../dist'));
+        this.app.use('/', express.static(path.join(__dirname, '../dist')));
         this.app.set('port', (process.env.PORT || 5000));
 
         let auth: SocketAuth = new SocketAuth();
