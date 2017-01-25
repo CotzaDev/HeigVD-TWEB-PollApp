@@ -1,4 +1,4 @@
-		              PROJET TWEB(Technologies WEB)
+		              TWEB PROJECT(WEB Technologies)
 Title: Poll App
 
 Autors : COTZA Andrea & MEGUEP Michelle
@@ -19,10 +19,12 @@ You can also find our mockups in this repository [here](https://github.com/Cotza
 - Express
 - MongoDB
 - Mangoose
+- PassportJS
+- Jwt
 
 # Contribute
-You need to have a recent version of NodeJS and NPM installed.
+You need to have a recent version of NodeJS (>= 6.9.1) and NPM installed.
 
 Clone the repository and run `npm install`.
 
-Then you can use `npm run server` to start the development server.
+Then to start the server `npm run start`.

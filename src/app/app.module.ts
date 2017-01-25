@@ -10,7 +10,6 @@ import { Ng2Webstorage } from 'ng2-webstorage';
 /*
  * Platform and Environment providers/directives/pipes
  */
-import { AboutComponent } from './about';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 // App is our top level component
 import { AppComponent } from './app.component';
@@ -46,7 +45,6 @@ const APP_PROVIDERS = [
   bootstrap: [AppComponent],
   declarations: [
     AppComponent,
-    AboutComponent,
     HomeComponent,
     PollComponent,
     QuestionComponent,
@@ -77,8 +75,7 @@ const APP_PROVIDERS = [
   entryComponents: [
     PollComponent,
     LoginComponent,
-    MasterComponent,
-    AboutComponent,
+    MasterComponent
   ],
 })
 export class AppModule {

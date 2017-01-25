@@ -86,7 +86,7 @@ export class Server {
 
     public startServer() {
         this.serv.listen(this.app.get('port'), function () {
-            console.log('Example app listening on port');
+            console.log('App listening on port 5000');
         });
     }
 

@@ -1,4 +1,3 @@
-import { AboutComponent } from './about';
 import { PollComponent } from './poll';
 import { LoginComponent } from './login';
 import { MasterComponent } from './master';
@@ -10,8 +9,6 @@ const ROUTES: Routes = [
   { path: 'poll/:id', component: PollComponent },
   { path: 'login', component: LoginComponent },
   { path: 'master', component: MasterComponent },
-  { path: 'about', component: AboutComponent },
-  { path: 'detail', loadChildren: './+detail#DetailModule' },
   { path: '**',    component: NoContentComponent },
 ];
 
