@@ -1,7 +1,7 @@
 import { Room } from '../models/room';
 import { User } from '../models/user';
 import { Group } from '../models/group';
-import { SocketAuth } from './login/api';
+import { SocketAuth } from './auth';
 
 interface Payload {
   groupID: string,
