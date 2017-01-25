@@ -1,11 +1,11 @@
 "use strict";
 
 import * as express from "express";
-import { User } from '../../models/user';
+import { User } from '../models/user';
 import * as jwt from 'jsonwebtoken';
-import { RoomManager } from '../rooms';
+import { RoomManager } from './rooms';
 
-var jwtKey = "Ag93Y6jPRZQ2nAY94GcnNuh";
+var jwtKey = process.env.JWT_KEY || "Ag93Y6jPRZQ2nAY94GcnNuh";
 
 class jwtPayload {
   public username: string;

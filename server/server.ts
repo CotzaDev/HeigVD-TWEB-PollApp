@@ -9,13 +9,13 @@ import * as passJwt from 'passport-jwt';
 import * as passport from 'passport';
 
 import { User } from './models/user';
-import { Login, SocketAuth } from './controllers/login/api';
+import { Login, SocketAuth } from './controllers/auth';
 import { Questions } from './controllers/questions';
 import { RoomManager } from './controllers/rooms';
 
 class JwtOpts implements passJwt.StrategyOptions {
   public jwtFromRequest: passJwt.JwtFromRequestFunction = passJwt.ExtractJwt.fromAuthHeaderWithScheme("Bearer");
-  secretOrKey: string = "Ag93Y6jPRZQ2nAY94GcnNuh";
+  secretOrKey: string = process.env.JWT_KEY || "Ag93Y6jPRZQ2nAY94GcnNuh";
 }
 
 export class Server {
@@ -30,7 +30,7 @@ export class Server {
         this.io = socketio(this.serv);
 
         (<any>mongoose).Promise = Promise;
-        mongoose.connect('mongodb://localhost:32768/pollapp');
+        mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:32768/pollapp');
 
         let jwtOpts: JwtOpts= new JwtOpts();
         let pStretegy: passJwt.Strategy = new passJwt.Strategy(jwtOpts, this.getUser);

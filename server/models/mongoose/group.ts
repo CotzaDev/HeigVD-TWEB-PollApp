@@ -1,5 +1,5 @@
 import * as mongoose from "mongoose";
-import { questionSchema, IQuestion } from './question';
+import { questionSchema } from './question';
 
 module GroupModel {
   export interface IGroup {
