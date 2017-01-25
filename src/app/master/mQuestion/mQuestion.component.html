@@ -1,0 +1,53 @@
+<div class="container-fluid" *ngIf="question">
+	<div class = "top">
+		<div class="col-sm-6">
+			<div class="onoffswitch">
+		    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" [(ngModel)]="question.multi_answers" (click)="updateQuestion()">
+		    <label class="onoffswitch-label" for="myonoffswitch"></label>
+			</div>
+			<p class="onoffinfo">Multiple choices</p>
+		</div>
+			<div class="col-sm-6">
+			<div class="dropdown" dropdown>
+			  <button id="btn btn-primary dropdown-toggle" type="button" class="btn green btn-primary" dropdownToggle>
+			    Submit<span class="caret"></span>
+			  </button>
+			  <ul dropdownMenu role="menu" aria-labelledby="single-button">
+					<li role="menuitem"><a class="dropdown-item" disabled>with an answer delay of</a></li>
+					<li class="divider dropdown-divider"></li>
+			    <li role="menuitem"><a (click)="submit(15)" class="dropdown-item">15 s</a></li>
+			    <li role="menuitem"><a (click)="submit(30)" class="dropdown-item">30 s</a></li>
+			    <li role="menuitem"><a (click)="submit(60)" class="dropdown-item">1 min</a></li>
+			    <li role="menuitem"><a (click)="submit(90)" class="dropdown-item">1 min 30 s</a></li>
+			  </ul>
+			</div>
+		</div>
+	</div>
+
+  <div class="row-fluid">
+    <p class="question">{{question.question}}</p>
+    <div class="answers">
+      <table>
+        <tbody>
+          <tr *ngFor="let answer of question.answers; let i = index" [class.editing]="i == editing">
+            <td><span class="edit" data-text="New Answer" [attr.contenteditable]="i == editing" [(contenteditableModel)]="question.answers[i].answer"></span></td>
+						<td class="controls">
+							<div class="checkbox">
+								<input id="correct" type="checkbox" value="" disabled [(ngModel)]="answer.isCorrect">
+								<label for="correct" (click)="saveToggle(i)" tooltip="Set this as the right answer" placement="bottom"></label>
+							</div>
+							<div class="ctrl">
+								<i class="fa fa-pencil" (click)="edit(i)"></i>
+								<i class="fa fa-trash" (click)="remove(i)"></i>
+							</div>
+							<div class="ctrl-edit">
+								<i class="fa fa-check" (click)="save()"></i>
+							</div>
+						</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <button type="button" class="btn green round btn-primary" tooltip="Add an answer" placement="bottom" (click)="add()">+</button>
+</div>

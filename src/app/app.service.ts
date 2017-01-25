@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import * as io from 'socket.io-client';
+import { SessionStorage } from 'ng2-webstorage';
 
 export type InternalStateType = {
   [key: string]: any,
@@ -27,5 +29,23 @@ export class AppState {
   private _clone(object: InternalStateType) {
     // simple object clone
     return JSON.parse(JSON.stringify( object ));
+  }
+}
+
+@Injectable()
+export class IO {
+  @SessionStorage()
+  private token: string;
+
+  private _socket: SocketIOClient.Socket;
+
+  constructor(){
+    this._socket = io();
+
+    this._socket.emit('authorize', this.token);
+  }
+
+  get socket(): SocketIOClient.Socket {
+    return this._socket;
   }
 }

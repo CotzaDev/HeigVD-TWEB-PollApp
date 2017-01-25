@@ -1,0 +1,185 @@
+.container-fluid{
+  align-items: center;
+  justify-content: center;
+
+}
+
+.top {
+ padding-bottom: 10%;
+ margin-right: -30px;
+ text-align: right;
+}
+
+.top div div {
+  display: inline-block;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown .btn {
+  width: 120px;
+}
+
+.dropdown-menu {
+  right: 0;
+  float: right;
+  left: inherit;
+}
+
+.dropdown-menu li a {
+  height: 40px;
+  padding-top: 8px;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #2196f3;
+  color: #fff;
+  font-weight: bold;
+}
+
+.dropdown-menu li:first-child a:hover {
+  background-color: #fff;
+  color: #373a3c;
+  font-weight: normal;
+}
+
+.dropdown.open > .btn-primary.dropdown-toggle {
+  background-color: #2e7d32;
+  border-color: #2e7d32;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.onoffswitch {
+  float: left;
+  margin-top: 35px;
+}
+
+p.onoffinfo {
+  display: inline-block;
+  float: left;
+  margin-left: 30px;
+  margin-top: 30px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.row-fluid {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+p.question {
+  font-size: 28px;
+  text-align: center;
+}
+
+.checkbox label {
+  width: 10px;
+  height: 33px;
+}
+
+.answers {
+  background-color: #fff;
+  border: 1px solid #cfd8dc;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 30px;
+}
+
+table {
+  width: 100%;
+}
+
+tr {
+  height: 65px;
+  border-bottom: 1px solid #cfd8dc;
+}
+
+td {
+  font-weight: normal;
+  font-size: 18px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+td.controls {
+  font-size: 25px;
+  text-align: right;
+  width: 140px;
+  border-left: 1px solid #ccc;
+}
+
+td.controls .fa-trash:hover {
+  color: #b71c1c;
+}
+
+td.controls .fa-pencil {
+  margin-right: 5px;
+}
+
+td.controls .fa-pencil:hover {
+  color: #2196f3;
+}
+
+td.controls .checkbox {
+  margin-right: 70px;
+}
+
+tr:last-child {
+  border-bottom: 0px;
+}
+
+.btn {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  display: block;
+}
+
+.ctrl-edit {
+  display: none;
+}
+
+tr.editing td {
+  background-color: #2196f3;
+  color: #fff;
+}
+
+tr.editing .ctrl-edit {
+  display: block;
+}
+
+tr.editing td.controls .checkbox,
+tr.editing td.controls .ctrl {
+  display: none;
+}
+
+tr.editing td.controls .fa-check {
+  margin-right: 28px;
+}
+
+tr.editing td.controls .fa-ckeck:hover {
+  color: #fff;
+}
+
+[contentEditable=true]:empty:not(:focus):before{
+    content:attr(data-text)
+}
+
+.checkbox input[type="checkbox"]:disabled + label, .checkbox input[type="radio"]:disabled + label {
+  opacity: 1;
+}

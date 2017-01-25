@@ -1,0 +1,30 @@
+.container-fluid {
+  height: 100%;
+  padding: 0;
+}
+
+.container-fluid .main-content {
+  margin-top: -60px;
+  padding-top: 60px;
+  height: 100%;
+}
+
+top-bar {
+  height: 60px;
+  display: block;
+}
+
+.row-fluid .sidebar {
+  height: 100%;
+  padding: 0;
+  overflow: scroll;
+  border-right: 1px solid #ccc;
+}
+
+.main {
+  height: 100%;
+  padding: 0;
+}
+.question{
+  height: 100%;
+}

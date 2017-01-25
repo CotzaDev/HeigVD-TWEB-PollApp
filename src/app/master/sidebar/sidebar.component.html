@@ -1,0 +1,35 @@
+<div class="container-fluid">
+  <ul *ngIf="selectedGroup < 0" class="list-group">
+    <li *ngFor="let group of masterService.questions; let i = index" class="list-group-item justify-content-between" (click)="openGroup(i)" [class.editing]="i == editing">
+      <span class="edit" data-text="New Group" [attr.contenteditable]="i == editing" [(contenteditableModel)]="masterService.questions[i].name"></span>
+      <span class="badge badge-default badge-pill">{{group.questions.length}}</span>
+      <i class="fa fa-caret-right"></i>
+      <div class="actions">
+        <i class="fa fa-pencil" (click)="editGroup(i)"></i>
+        <i class="fa fa-trash" (click)="removeGroup(i)"></i>
+      </div>
+      <div class="editing-action">
+        <i class="fa fa-check" (click)="saveGroup()"></i>
+      </div>
+    </li>
+    <button type="button" class="btn green round btn-primary" tooltip="Add group" placement="top" (click)="addGroup()">+</button>
+  </ul>
+
+  <ul *ngIf="selectedGroup >= 0" class="list-group">
+    <li class="list-group-item justify-content-between back" (click)="back()">
+      <i class="fa fa-caret-left"></i>
+      <p>...</p>
+    </li>
+    <li *ngFor="let question of questions; let i = index" class="list-group-item justify-content-between" (click)="selectQuestion(i)" [class.editing]="i == editing">
+      <span class="edit" data-text="New Question" [attr.contenteditable]="i == editing" [(contenteditableModel)]="questions[i].question"></span>
+      <div class="actions">
+        <i class="fa fa-pencil" (click)="editQuestion(i)"></i>
+        <i class="fa fa-trash" (click)="removeQuestion(i)"></i>
+      </div>
+      <div class="editing-action">
+        <i class="fa fa-check" (click)="saveQuestion()"></i>
+      </div>
+    </li>
+    <button type="button" class="btn green round btn-primary" tooltip="Add group" placement="top" (click)="addQuestion()">+</button>
+  </ul>
+</div>

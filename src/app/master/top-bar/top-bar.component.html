@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="col-xs-1 hidable">
+      <div class="logo"></div>
+    </div>
+    <div *ngIf="topBarService.roomID != ''" class="col-xs-2">
+      <i class="fa fa-link"></i>
+      <p>{{topBarService.roomID}}</p>
+    </div>
+    <div *ngIf="topBarService.roomID != ''" class="col-xs-2 hidable">
+      <i class="fa fa-users"></i>
+      <p>{{topBarService.nbConnected}}</p>
+    </div>
+    <div *ngIf="topBarService.roomID != ''" class="col-xs-2 hidable">
+      <i class="fa fa-clock-o"></i>
+      <p>{{timeString}}</p>
+    </div>
+    <div *ngIf="topBarService.roomID == ''" class="col-xs-6 hidable" ></div>
+    <div class="col-xs-5">
+      <button *ngIf="topBarService.roomID == ''" (click)="openRoom()" type="button" class="btn green btn-primary">Start room</button>
+      <button *ngIf="topBarService.roomID != ''" (click)="closeRoom()" type="button" class="btn red btn-primary">Close room</button>
+    </div>
+  </div>
+</div>

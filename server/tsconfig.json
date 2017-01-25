@@ -4,17 +4,14 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "noEmitHelpers": true,
     "strictNullChecks": false,
     "skipDefaultLibCheck": true,
     "pretty": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "baseUrl": "./src",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
+    "baseUrl": "",
     "lib": [
       "dom",
       "es5",
@@ -22,13 +19,18 @@
       "es7"
     ],
     "types": [
-      "hammerjs",
-      "jasmine",
+      "socket.io",
+      "express",
+      "express-serve-static-core",
+      "serve-static",
       "node",
-      "selenium-webdriver",
-      "source-map",
-      "uglify-js",
-      "socket.io-client"
+      "mime",
+      "mongodb",
+      "mongoose",
+      "body-parser",
+      "passport",
+      "passport-jwt",
+      "jsonwebtoken"
     ]
   },
   "exclude": [
@@ -38,12 +40,7 @@
     "src/**/*.e2e.ts",
     "server"
   ],
-  "awesomeTypescriptLoaderOptions": {
-    "forkChecker": true,
-    "useWebpackText": true,
-    "useCache": true
-  },
-  "compileOnSave": false,
-  "buildOnSave": false,
+  "compileOnSave": true,
+  "buildOnSave": true,
   "atom": { "rewriteTsconfig": false }
 }

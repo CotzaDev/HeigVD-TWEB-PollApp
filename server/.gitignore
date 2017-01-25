@@ -47,8 +47,6 @@ yarn-error.log
 /src/*/__build__/
 /src/*/dist/
 
-/server/**/*.js
-
 # Doc #
 /doc/
 

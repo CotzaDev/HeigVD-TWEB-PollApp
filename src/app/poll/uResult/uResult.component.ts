@@ -1,34 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { OnInit } from '@angular/core';
 
-import { AppState } from '../app.service';
-import { Title } from './title';
+import { AppState } from '../../app.service';
+import { IResults } from '../payload';
 
 @Component({
   // The selector is what angular internally uses
   // for `document.querySelectorAll(selector)` in our index.html
   // where, in this case, selector is the string 'home'
-  selector: 'my-home',  // <home></home>
+  selector: 'result',  // <home></home>
   // We need to tell Angular's Dependency Injection which providers are in our app.
   providers: [
-    Title,
   ],
   // Our list of styles in our component. We may add more to compose many styles together
-  styleUrls: [ './home.component.css' ],
+  styleUrls: [ './uResult.component.css' ],
   // Every Angular template is first compiled by the browser before Angular runs it's compiler
-  templateUrl: './home.component.html',
+  templateUrl: './uResult.component.html',
 })
-export class HomeComponent implements OnInit {
+export class UResultComponent implements OnInit {
   // Set our default values
   public localState = { value: '' };
+  @Input() result: IResults;
+  @Input() userResponse: Array<Boolean>;
+
   // TypeScript public modifiers
   constructor(
     public appState: AppState,
-    public title: Title,
-  ) {}
+  ) {
+  }
+
+  public calcPercent(nb: number): string {
+    return (this.result.responses == 0) ? '0 %' : Math.round(nb / this.result.responses * 100) + ' %';
+  }
 
   public ngOnInit() {
-    console.log('hello `Home` component');
+    console.log('hello `Result` component');
     // this.title.getData().subscribe(data => this.data = data);
   }
 
@@ -36,32 +42,5 @@ export class HomeComponent implements OnInit {
     console.log('submitState', value);
     this.appState.set('value', value);
     this.localState.value = '';
-  }
-
-  public switch(e: any, previous: any, next: any) {
-    // 37 = left arrow
-    if(e.keyCode == 37 && previous) {
-      previous.focus();
-      return;
-    }
-    // 39 = rigth arrow
-    if(e.keyCode == 39 && next) {
-      next.focus();
-      return;
-    }
-
-    // 8 = return
-    if(e.keyCode != 8 && next) {
-      next.focus();
-    }
-    else if(e.keyCode == 8 && previous) {
-      previous.focus();
-    }
-  }
-
-  public clear(e: any) {
-    if(e.keyCode != 37 && e.keyCode != 39) {
-      e.target.value = "";
-    }
   }
 }

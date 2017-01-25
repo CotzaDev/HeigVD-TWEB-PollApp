@@ -1,0 +1,25 @@
+<a href="#login" class="login">Sign In</a>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="app-header">
+    <div class="logo"></div>
+      <h1 class="text-xs-center">Poll App</h1>
+      <h2 class="text-xs-center">Interactive polls for audience</h2>
+    </div>
+
+    <form class="form-inline" id="poll-id">
+      <p>Enter poll ID</p>
+      <div class="form-group" [class.has-danger]="isIncorrect">
+        <input [(ngModel)]="roomID[0]" name="d1" #d1 (keydown)="ctrl($event, null, d2)" (keyup)="autoSubmit()" (keypress)="switch($event, d2)" type="text" maxlength="1" class="form-control text-xs-center text-uppercase digit" id="id-d1">
+        <span>-</span>
+        <input [(ngModel)]="roomID[1]" name="d2" #d2 (keydown)="ctrl($event, d1, d3)" (keyup)="autoSubmit()" (keypress)="switch($event, d3)" type="text" maxlength="1" class="form-control text-xs-center text-uppercase digit" id="id-d2">
+        <span>-</span>
+        <input [(ngModel)]="roomID[2]" name="d3" #d3 (keydown)="ctrl($event, d2, d4)" (keyup)="autoSubmit()" (keypress)="switch($event, d4)" type="text" maxlength="1" class="form-control text-xs-center text-uppercase digit" id="id-d3">
+        <span>-</span>
+        <input [(ngModel)]="roomID[3]" name="d4" #d4 (keydown)="ctrl($event, d3, null)" (keyup)="autoSubmit()" (keypress)="switch($event, null)" type="text" maxlength="1" class="form-control text-xs-center text-uppercase digit" id="id-d4">
+        <button (click)="submit()" type="submit" class="btn btn-primary digit"><i class="fa fa-arrow-right"></i></button>
+        <div class="form-control-feedback">{{errorMsg}}</div>
+      </div>
+    </form>
+  </div>
+</div>

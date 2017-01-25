@@ -1,0 +1,16 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <top-bar [timer]="timer"></top-bar>
+  </div>
+  <div class="main-content">
+    <div class="row-fluid main">
+      <div class="col-sm-4 sidebar">
+        <sidebar (onQuestionSelect)="onQuestionSelect($event)" (onGroupSelect)="onGroupSelect($event)"></sidebar>
+      </div>
+    	<div class="col-sm-8 question">
+    	  <mQuestion *ngIf="questionStatus == 0" [question]="currentQuestion" [groupID]="currentGroupID" (onRoomSubmit)="onRoomSubmit($event)"></mQuestion>
+        <live-result *ngIf="questionStatus == 1 || questionStatus == 2" [time]="questionTime" [question]="currentQuestion" (onTimerUpdate)="onTimerUpdate($event)"></live-result>
+    	</div>
+    </div>
+  </div>
+</div>
