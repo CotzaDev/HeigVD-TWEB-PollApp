@@ -18,6 +18,7 @@
   "homepage": "",
   "license": "MIT",
   "scripts": {
+    "postinstall": "npm run build:prod && cd server && npm install && tsc",
     "dev": "cross-env NODE_ENV=development",
     "build:dev": "cross-env NODE_ENV=development webpack --progress --profile",
     "build:analyze": "cross-env NODE_ENV=development webpack --progress --profile",
@@ -50,7 +51,7 @@
     "server:dev": "cross-env NODE_ENV=development npm run dev webpack-dashboard -- webpack-dev-server --progress --profile --watch",
     "server:prod": "http-server dist --cors",
     "server": "npm run server:dev",
-    "start": "tsc --rootDir server && npm run build:prod && node index.js",
+    "start": "node server/index.js",
     "test": "cross-env NODE_ENV=testing karma start",
     "tslint": "tslint",
     "version": "npm run build",

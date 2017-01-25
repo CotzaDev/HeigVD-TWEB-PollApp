@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <ul *ngIf="selectedGroup < 0" class="list-group">
-    <li *ngFor="let group of masterService.questions; let i = index" class="list-group-item justify-content-between text-capitalize" (click)="openGroup(i)" [class.editing]="i == editing">
+    <li *ngFor="let group of masterService.questions; let i = index" class="list-group-item justify-content-between" (click)="openGroup(i)" [class.editing]="i == editing">
       <span class="edit" data-text="New Group" [attr.contenteditable]="i == editing" [(contenteditableModel)]="masterService.questions[i].name"></span>
       <span class="badge badge-default badge-pill">{{group.questions.length}}</span>
       <i class="fa fa-caret-right"></i>
@@ -20,7 +20,7 @@
       <i class="fa fa-caret-left"></i>
       <p>...</p>
     </li>
-    <li *ngFor="let question of questions; let i = index" class="list-group-item justify-content-between text-capitalize" (click)="selectQuestion(i)" [class.editing]="i == editing">
+    <li *ngFor="let question of questions; let i = index" class="list-group-item justify-content-between" (click)="selectQuestion(i)" [class.editing]="i == editing">
       <span class="edit" data-text="New Question" [attr.contenteditable]="i == editing" [(contenteditableModel)]="questions[i].question"></span>
       <div class="actions">
         <i class="fa fa-pencil" (click)="editQuestion(i)"></i>
